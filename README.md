@@ -1,9 +1,11 @@
-techtribesje
-============
+techtribes.je
+=============
 
 This repo contains all of the source code for the [techtribes.je](http://techtribes.je) website - the only way to keep up to date with the IT, tech and digital sector in Jersey and Guernsey, Channel Islands.
 
 ![A context diagram for techtribes.je](techtribesje-context.png)
+
+techtribes.je is built using Java, Spring (core, MVC, Social), Apache Lucene, MySQL, MongoDB, twitter4j, ROME and more. It all runs on Apache Tomcat in the cloud at Rackspace.
 
 ## Prerequisites
 
