@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <bean id="eventComponent" class="je.techtribes.component.event.EventComponentImpl">
+        <constructor-arg name="eventDao" ref="eventDao" />
+        <constructor-arg name="contentSourceComponent" ref="contentSourceComponent" />
+    </bean>
+
+    <bean id="eventDao" class="je.techtribes.component.event.JdbcEventDao">
+        <constructor-arg name="dataSource" ref="dataSource" />
+    </bean>
+
+</beans>

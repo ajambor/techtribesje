@@ -1,0 +1,256 @@
+body {
+    font-family: Lucida Grande;
+}
+a {
+    color: #000000;
+    font-weight: bold;
+}
+a img {
+    border: 0;
+}
+h1, h3, h4 {
+    color: #000000;
+}
+.sectionHeading {
+    color: white;
+    padding: 12px;
+    margin-top: 32px;
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 16px;
+    border-radius: 6px 6px 6px 6px;
+}
+.subSectionHeading {
+    color: white;
+    padding: 12px;
+    margin-top: 32px;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 16px;
+    border-radius: 6px 6px 6px 6px;
+}
+.sectionHeading .nav-pills {
+    font-size: 14px;
+    margin-top: 8px;
+}
+.sectionHeading .nav-pills a {
+    color: white;
+}
+.sectionHeading .nav-pills a:hover {
+    background-color: #ffffff;
+    color: #000000;
+}
+.nav-pills a:hover {
+    background-color: #ffffff;
+    color: #000000;
+}
+.nav-pills .active a {
+    background-color: #ffffff;
+    color: #000000;
+}
+.nav-pills .active a:hover {
+    background-color: #ffffff;
+    color: #000000;
+}
+.container {
+    line-height: 1.5;
+}
+.profileImageSmall {
+    width: 24px;
+    height: 24px;
+    border: gray solid 1px;
+    border-radius: 6px 6px 6px 6px;
+}
+.profileImage {
+    width: 48px;
+    height: 48px;
+    border: gray solid 1px;
+    border-radius: 6px 6px 6px 6px;
+}
+.faded {
+    opacity:0.2;
+    filter:alpha(opacity=20);
+}
+.metadata {
+    font-size: 11px;
+    text-align: right;
+    color: gray;
+}
+.tweet, .newsFeedEntry, .newsEntry, .talk, .job, .event, .book {
+    border: white solid 1px;
+    padding: 8px;
+    margin-bottom: 16px;
+    border-radius: 6px 6px 6px 6px;
+}
+.bookCover {
+    border: gray solid 1px;
+}
+.person, .tribe {
+    margin-bottom: 48px;
+}
+.newsFeedEntry .title, .newsEntry .title, .talk .title, .event .title, .job .title {
+    font-size: 24px;
+    margin-bottom: 4px;
+}
+.pagingLinks {
+    text-align: center;
+}
+
+.hover {
+    border: #eeeeee solid 1px;
+}
+footer {
+    text-align: center;
+    margin-bottom: 32px;
+    color: gray;
+}
+.bannerAd {
+    text-align: center;
+    margin: 16px 0 16px 0;
+}
+.eventMetadata {
+    font-size: 13px;
+    color: gray;
+}
+footer a {
+    color: gray;
+}
+#infographics {
+    text-align: center;
+}
+#infographics h1 {
+    line-height: 1.0em;
+}
+#infographics .banner {
+    font-size: 80px;
+    line-height: 1.0em;
+    color: black;
+    margin-bottom: 16px;
+    margin-top: 32px;
+    padding: 32px;
+    font-weight: bold;
+}
+#infographics .statistic {
+    font-size: 120px;
+    line-height: 1.0em;
+    font-weight: bold;
+}
+#infographics .title {
+    font-size: 40px;
+    line-height: 1.0em;
+    font-weight: bold;
+}
+#infographics .profileImage {
+    margin: 4px 4px 4px 4px;
+    width: 48px;
+    height: 48px;
+}
+#infographics .profileImageSmall {
+    margin-bottom: 4px;
+    width: 24px;
+    height: 24px;
+}
+#infographics .mission {
+    font-size: 24px;
+    line-height: 1.4em;
+    font-weight: bold;
+}
+.siteHeader {
+    padding: 40px 64px 64px 64px;
+    background: #0776A0;
+    background: linear-gradient(to bottom, #888888, #555555);
+    background: -webkit-linear-gradient(top, #888888, #555555);
+    border-radius: 0px 0px 6px 6px;
+    color: white;
+    margin-bottom: 32px;
+    clear: both;
+    position: relative;
+    margin-top: 40px;
+}
+.siteHeaderImage {
+    border-radius: 6px 6px 6px 6px;
+    border: gray solid 1px;
+}
+.siteHeaderTagLine1 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 16px;
+    text-align: center;
+    line-height: 1.2;
+}
+.siteHeaderTagLine2 {
+    font-size: 14px;
+    margin-bottom: 32px;
+    text-align: center;
+}
+
+.sectionHeading, .subSectionHeading, .progress .bar {
+    background: linear-gradient(to bottom, #888888, #555555);
+    background: -webkit-linear-gradient(top, #888888, #555555);
+}
+.eventsSection .sectionHeading, .eventsSection .subSectionHeading, .eventsSection .progress .bar, .progress .bar-events {
+    background: linear-gradient(to bottom, #FFAA00, #DD9300);
+    background: -webkit-linear-gradient(top, #FFAA00, #DD9300);
+}
+.eventsSection a {
+    color: #FFAA00;
+}
+.talksSection .sectionHeading, .talksSection .subSectionHeading, .talksSection .progress .bar, .progress .bar-talks {
+    background: linear-gradient(to bottom, #BE0000, #A80000);
+    background: -webkit-linear-gradient(top, #BE0000, #A80000);
+}
+.talksSection a {
+    color: #BE0000;
+}
+.contentSection .sectionHeading, .contentSection .subSectionHeading, .contentSection .progress .bar, .progress .bar-content {
+    background: linear-gradient(to bottom, #019201, #027602);
+    background: -webkit-linear-gradient(top, #019201, #027602);
+}
+.contentSection a, .newsFeedEntry a {
+    color: #019201;
+}
+.tweetsSection .sectionHeading, .tweetsSection .subSectionHeading, .tweetsSection .progress .bar, .progress .bar-tweets {
+    background: linear-gradient(to bottom, #0776A0, #044E6B);
+    background: -webkit-linear-gradient(top, #0776A0, #044E6B);
+}
+.tweetsSection a, .tweet a {
+    color: #0776A0;
+}
+.jobsSection .sectionHeading, .jobsSection .subSectionHeading, .jobsSection .progress .bar {
+    background: linear-gradient(to bottom, #48036F, #390258);
+    background: -webkit-linear-gradient(top, #48036F, #390258);
+}
+.jobsSection a {
+    color: #48036F;
+}
+
+.selected {
+    border: #dddddd solid 1px;
+    background: linear-gradient(to bottom, #fafafa, #dadada);
+    background: -webkit-linear-gradient(top, #fafafa, #dadada);
+    color: black;
+}
+
+.badge-followersover1000 {
+    background: linear-gradient(to bottom, #FFAD40, #F3A640);
+    background: -webkit-linear-gradient(top, #FFAD40, #F3A640);
+}
+.badge-followersover5000 {
+    background: linear-gradient(to bottom, #999999, #AAAAAA);
+    background: -webkit-linear-gradient(top, #999999, #AAAAAA);
+}
+.badge-followersunder500 {
+    background: linear-gradient(to bottom, #A66002, #965601);
+    background: -webkit-linear-gradient(top, #A66002, #965601);
+}
+.badge-followers0 {
+    background: linear-gradient(to bottom, #000000, #000000);
+    background: -webkit-linear-gradient(top, #000000, #000000);
+}
+.newsSection .sectionHeading, .newsSection .subSectionHeading, .newsSection .progress .bar {
+    background: linear-gradient(to bottom, #333333, #000000);
+    background: -webkit-linear-gradient(top, #333333, #000000);
+}
+.newsSection a {
+    color: #000000;
+}

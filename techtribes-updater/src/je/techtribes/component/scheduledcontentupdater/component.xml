@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <bean id="contentUpdater" class="je.techtribes.component.scheduledcontentupdater.ScheduledContentUpdater" destroy-method="stop" scope="singleton">
+        <constructor-arg name="contentSourceComponent" ref="contentSourceComponent" />
+        <constructor-arg name="gitHubComponent" ref="gitHubComponent" />
+        <constructor-arg name="tweetComponent" ref="tweetComponent" />
+        <constructor-arg name="newsFeedEntryComponent" ref="newsFeedEntryComponent" />
+        <constructor-arg name="activityComponent" ref="activityComponent" />
+        <constructor-arg name="talkComponent" ref="talkComponent" />
+        <constructor-arg name="badgeComponent" ref="badgeComponent" />
+        <constructor-arg name="searchComponent"  ref="searchComponent" />
+        <constructor-arg name="gitHubConnector" ref="gitHubConnector" />
+        <constructor-arg name="newsFeedConnector" ref="newsFeedConnector" />
+        <constructor-arg name="twitterConnector" ref="twitterConnector" />
+    </bean>
+
+</beans>

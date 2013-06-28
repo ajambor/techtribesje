@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <bean name="badgeComponent" class="je.techtribes.component.badge.BadgeComponentImpl">
+        <constructor-arg name="contentSourceComponent" ref="contentSourceComponent" />
+        <constructor-arg name="badgeDao" ref="badgeDao" />
+    </bean>
+
+    <bean id="badgeDao" class="je.techtribes.component.badge.JdbcBadgeDao">
+        <constructor-arg name="dataSource" ref="dataSource" />
+    </bean>
+
+</beans>

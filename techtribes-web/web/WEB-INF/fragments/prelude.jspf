@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jstl/fmt_rt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://techtribes.je" prefix="techtribesje" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
+<html lang="en">
+<head>
+    <title>techtribes.je ${pageTitle}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="/static/css/techtribesje.css" rel="stylesheet" media="screen">
+    <link href="/static/css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="/rss.xml" />
+    <link rel="apple-touch-icon" href="/static/img/apple-touch-icon.png"/>
+    <script src="/static/js/jquery-1.8.2.min.js"></script>
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="/static/js/html5.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <!-- <a class="brand" href="/">techtribes.je</a> -->
+                <div class="nav-collapse collapse">
+                    <ul class="nav">
+                        <li><a href="/"><i class="icon-home icon-white"></i></a></li>
+                        <li><a href="/news">News</a></li>
+                        <li><a href="/events/year/2013">Events</a></li>
+                        <li><a href="/talks/year/2013">Talks</a></li>
+                        <li><a href="/content">Content</a></li>
+                        <li><a href="/tweets">Tweets</a></li>
+                        <li><a href="/code">Code</a></li>
+                        <li><a href="/people">People</a></li>
+                        <li><a href="/tribes">Tribes</a></li>
+                        <li><a href="/jobs">Jobs</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Find <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li class="nav-header">Tweets by hashtag</li>
+                                <li><a href="/search?q=%23digitaljersey">#digitaljersey</a></li>
+                                <li><a href="/search?q=%23bcsjersey">#bcsjersey</a></li>
+                                <li class="divider"></li>
+                                <li class="nav-header">Tweets by user</li>
+                                <li><a href="/search?q=@digitaljersey">@digitaljersey</a></li>
+                                <li><a href="/search?q=@bcsjersey">@bcsjersey</a></li>
+                                <li class="divider"></li>
+                                <li class="nav-header">Content</li>
+                                <li><a href="/search?q=agile">agile</a></li>
+                                <li><a href="/search?q=architecture">architecture</a></li>
+                                <li><a href="/search?q=cloud">cloud</a></li>
+                                <li><a href="/search?q=crm">CRM</a></li>
+                                <li><a href="/search?q=%22digital%20jersey%22">Digital Jersey</a></li>
+                                <li><a href="/search?q=fatca">FATCA</a></li>
+                                <li><a href="/search?q=microsoft">Microsoft</a></li>
+                                <li><a href="/search?q=%22open%20source%22">Open Source</a></li>
+                                <li><a href="/search?q=security">Security</a></li>
+                                <li><a href="/search?q=sharepoint">SharePoint</a></li>
+                                <li><a href="/search?q=sharepoint%20AND%20crm">SharePoint and CRM</a></li>
+                                <li><a href="/search?q=%22social%20media%22">Social Media</a></li>
+                                <li><a href="/search?q=software">software</a></li>
+                                <li><a href="/search?q=%22windows%20server%22">Windows Server</a></li>
+                                <li class="divider"></li>
+                                <li class="nav-header">Content and Tweets</li>
+                                <li><a href="/search?q=!gigabit">Gigabit</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <c:if test="${not empty user}">
+                    <ul class="nav pull-right">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="${user.profileImageUrl}" alt="Profile image" class="profileImageSmall" title="${user.name}" /> ${user.name} <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li class="nav-header">User</li>
+                                <li><a href="<techtribesje:goto contentSource="${user}" />">View Profile</a></li>
+                                <li><a href="/user/profile">Edit Profile</a></li>
+                                <%
+                                    if (request.isUserInRole("admin")) {
+                                %>
+                                <li class="divider"></li>
+                                <li class="nav-header">Admin</li>
+                                <li><a href="/admin/add">Add person/tribe</a></li>
+                                <li><a href="/admin/status">Status</a></li>
+                                <%
+                                    }
+                                %>
+                                <li class="divider"></li>
+                                <li><a href="/signout">Sign out</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    </c:if>
+                    <form class="navbar-search pull-right" action="/search">
+                        <input name="q" type="text" value="${param['q']}" class="search-query input-small" placeholder="Search">
+                    </form>
+                </div><!--/.nav-collapse -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // todo: hack to get Twitter Boostrap dropdowns working on mobile devices ... remove when fixed!
+        $('body').on('touchstart.dropdown', '.dropdown-menu', function (e) { e.stopPropagation(); });
+    </script>
+
+    <div class="siteHeader">
+        <a href="https://github.com/techtribesje/techtribesje" target="_blank"><img style="position: absolute; top: 0; right: 0; border: 0;" src="/static/img/github-forkme.png" alt="Fork me on GitHub"></a>
+
+        <div>
+            <div class="siteHeaderTagLine1">
+                <a href="/"><img src="/static/img/siteHeaderMonkey.png" alt="Monkey" class="siteHeaderImage" /></a>
+                tech tribe: a group of people with a common technology interest
+                <div class="siteHeaderTagLine2">
+                    The only way to keep up to date with the IT, tech and digital sector in Jersey and Guernsey, Channel Islands
+                </div>
+            </div>
+        </div>
+        <div class="hidden-phone">
+            <c:forEach var="contentSource" items="${peopleAndTribes}">
+                <a href="<techtribesje:goto contentSource="${contentSource}" />"><img src="${contentSource.profileImageUrl}" alt="Profile image" class="profileImageSmall" style="margin: 1px;" title="${contentSource.name}" /></a>
+            </c:forEach>
+        </div>
+    </div>
+
+    <div class="container">
+
+            <c:if test="${empty user}">
+            <div style="text-align: center; margin-bottom: 16px;">
+                <a href="http://www.jerseyfinance.je/events/delivering-the-digital-difference--how-to-be-a-digital-winner" target="_blank"><img src="/static/img/ads/20130711-jerseyfinance.png" alt="Delivering the digital difference: How to be a digital winner" style="border: gray solid 1px;" class="img-rounded"/></a>
+            </div>
+            </c:if>

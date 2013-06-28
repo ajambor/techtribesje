@@ -1,0 +1,6 @@
+<span class="person">
+    <div style="float: left;">
+        <a href="<techtribesje:goto contentSource="${person}"/>"><img src="${person.profileImageUrl}" alt="Profile image" class="profileImageSmall" /></a>
+    </div>
+    <a href="<techtribesje:goto contentSource="${person}"/>">${person.name}</a>
+</span>

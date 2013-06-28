@@ -1,0 +1,49 @@
+package je.techtribes.web.controller;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import javax.servlet.http.HttpServletRequest;
+
+@Controller
+public class ErrorPageController extends AbstractController {
+
+    private static Log log = LogFactory.getLog(ErrorPageController.class);
+
+    @RequestMapping(value= "/400", method = RequestMethod.GET)
+    public String show400Page(ModelMap model) {
+        addCommonAttributes(model);
+        return "404";
+
+    }
+
+    @RequestMapping(value= "/403", method = RequestMethod.GET)
+    public String show403Page(ModelMap model) {
+        addCommonAttributes(model);
+        setPageTitle(model, "403");
+
+        return "403";
+    }
+
+    @RequestMapping(value= "/404", method = RequestMethod.GET)
+    public String show404Page(ModelMap model, HttpServletRequest request) {
+        log.warn("[404] " + request.getAttribute("javax.servlet.forward.request_uri"));
+        addCommonAttributes(model);
+        setPageTitle(model, "404");
+
+        return "404";
+    }
+
+    @RequestMapping(value= "/500", method = RequestMethod.GET)
+    public String showErrorPage(ModelMap model) {
+        addCommonAttributes(model);
+        setPageTitle(model, "500");
+
+        return "500";
+    }
+
+}

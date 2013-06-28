@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
+
+    <bean id="connectionFactoryLocator" class="org.springframework.social.connect.support.ConnectionFactoryRegistry">
+        <property name="connectionFactories">
+            <list>
+                <bean class="org.springframework.social.twitter.connect.TwitterConnectionFactory">
+                    <constructor-arg value="${twitter.consumerKey}" />
+                    <constructor-arg value="${twitter.consumerSecret}" />
+                </bean>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="usersConnectionRepository" class="org.springframework.social.connect.jdbc.JdbcUsersConnectionRepository">
+        <constructor-arg ref="dataSource" />
+        <constructor-arg ref="connectionFactoryLocator" />
+        <constructor-arg ref="textEncryptor" />
+        <property name="connectionSignUp" ref="connectionSignUp" />
+    </bean>
+
+    <bean id="connectionRepository" factory-method="createConnectionRepository"
+          factory-bean="usersConnectionRepository" scope="request">
+        <constructor-arg value="#{request.userPrincipal.name}" />
+        <aop:scoped-proxy proxy-target-class="false" />
+    </bean>
+
+    <bean id="textEncryptor" class="org.springframework.security.crypto.encrypt.Encryptors" factory-method="text">
+        <constructor-arg value="${security.encryptPassword}" />
+        <constructor-arg value="${security.encryptSalt}" />
+    </bean>
+
+    <bean class="org.springframework.social.connect.web.ConnectController">
+        <constructor-arg ref="connectionFactoryLocator" />
+        <constructor-arg ref="connectionRepository" />
+    </bean>
+
+    <bean class="org.springframework.social.connect.web.ProviderSignInController">
+        <constructor-arg ref="connectionFactoryLocator" />
+        <constructor-arg ref="usersConnectionRepository" />
+        <constructor-arg ref="signInAdapter" />
+    </bean>
+
+    <bean id="signInAdapter" class="je.techtribes.component.social.SignInAdapterImpl">
+        <property name="twitterIdForAdministration" value="${twitter.id}" />
+    </bean>
+
+    <bean id="connectionSignUp" class="je.techtribes.component.social.AutomaticConnectionSignUp">
+        <property name="contentSourceComponent" ref="contentSourceComponent" />
+    </bean>
+        
+</beans>

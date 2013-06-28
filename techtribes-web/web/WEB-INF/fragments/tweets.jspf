@@ -1,0 +1,18 @@
+<c:forEach var="tweet" items="${tweets}" varStatus="status">
+    <c:if test="${status.index % 4 == 0}">
+        <div class="row">
+    </c:if>
+            <div class="span3">
+                <%@ include file="/WEB-INF/fragments/tweet.jspf" %>
+            </div>
+    <c:if test="${status.index % 4 == 3}">
+        </div>
+    </c:if>
+
+    <c:if test="${status.last and status.index % 4 ne 3}">
+        <c:forEach begin="1" end="${3-(status.index % 4)}">
+            <div class="span3">&nbsp;</div>
+        </c:forEach>
+        </div>
+    </c:if>
+</c:forEach>

@@ -1,0 +1,31 @@
+<c:forEach var="activity" items="${activityList}" end="9" varStatus="status">
+    <c:if test="${activity.score > 0}">
+        <div class="row">
+            <div class="span3">
+                <span class="badge">${status.index+1}</span>
+                <a href="<techtribesje:goto contentSource="${activity.contentSource}" />"><img src="${activity.contentSource.profileImageUrl}" alt="Profile image" class="profileImageSmall" /></a>
+                <a href="<techtribesje:goto contentSource="${activity.contentSource}" />">${activity.contentSource.name}</a>
+                <c:if test="${activity.contentSource.tribe and activity.contentSource.type != 'Community'}"><span style="font-size: 11px; color: gray;">(${activity.contentSource.numberOfMembers})</span></c:if>
+            </div>
+            <div class="span8">
+                <div class="progress" style="margin-bottom: 16px;">
+                    <c:if test="${(activity.internationalTalkScore + activity.localTalkScore) > 0}">
+                    <div class="bar bar-talks" style="width: ${((activity.internationalTalkScore + activity.localTalkScore)/topScore)*100}%">${activity.internationalTalkScore + activity.localTalkScore}</div>
+                    </c:if>
+                    <c:if test="${activity.newsFeedEntryScore > 0}">
+                    <div class="bar bar-content" style="width: ${(activity.newsFeedEntryScore/topScore)*100}%">${activity.newsFeedEntryScore}</div>
+                    </c:if>
+                    <c:if test="${activity.twitterScore > 0}">
+                    <div class="bar bar-tweets" style="width: ${(activity.twitterScore/topScore)*100}%">${activity.twitterScore}</div>
+                    </c:if>
+                    <c:if test="${activity.eventScore > 0}">
+                    <div class="bar bar-events" style="width: ${(activity.eventScore/topScore)*100}%">${activity.eventScore}</div>
+                    </c:if>
+                </div>
+            </div>
+            <div class="span1">
+                <span class="badge badge-inverse"><fmt:formatNumber value="${activity.score}" minFractionDigits="1" maxFractionDigits="1" /></span>
+            </div>
+        </div>
+    </c:if>
+</c:forEach>

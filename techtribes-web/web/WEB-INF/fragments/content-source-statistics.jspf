@@ -1,0 +1,14 @@
+<c:forEach var="contentSourceStatistic" items="${contentSourceStatistics}">
+    <c:set var="contentSource" value="${contentSourceStatistic.contentSource}" />
+<div class="row">
+    <div class="span3">
+        <a href="<techtribesje:goto contentSource="${contentSource}" />"><img src="${contentSource.profileImageUrl}" alt="Profile image" class="profileImageSmall" /></a>
+        <a href="<techtribesje:goto contentSource="${contentSource}" />">${contentSource.name}</a>
+    </div>
+    <div class="span9">
+        <div class="progress" style="margin-bottom: 16px;">
+            <div class="bar" style="width: ${contentSourceStatistic.percentage}%">${contentSourceStatistic.score}</div>
+        </div>
+    </div>
+</div>
+</c:forEach>

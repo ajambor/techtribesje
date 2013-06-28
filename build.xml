@@ -1,0 +1,246 @@
+<project name="techtribesje" default="unit-tests" basedir=".">
+
+    <property name="project.name" value="techtribesje"/>
+
+    <property name="etc.dir" value="${basedir}/etc"/>
+    <property name="build.dir" value="${basedir}/build"/>
+    <property name="dist.dir" value="${build.dir}/dist"/>
+
+    <property name="core.dir" value="${basedir}/techtribes-core" />
+    <property name="core.build.dir" value="${build.dir}/techtribes-core" />
+
+    <property name="updater.dir" value="${basedir}/techtribes-updater" />
+    <property name="updater.build.dir" value="${build.dir}/techtribes-updater" />
+    <property name="updater.dist.dir" value="${dist.dir}/techtribes-updater" />
+
+    <property name="web.dir" value="${basedir}/techtribes-web" />
+    <property name="web.build.dir" value="${build.dir}/techtribes-web" />
+    <property name="web.dist.dir" value="${dist.dir}/techtribes-web" />
+
+    <property name="production.lib.dir" value="${basedir}/lib/production"/>
+    <property name="test.lib.dir" value="${basedir}/lib/test"/>
+
+    <property environment="env"/>
+
+    <target name="init" depends="clean">
+        <buildnumber />
+        <propertyfile file="${etc.dir}/build.properties" comment="Build information">
+            <entry key="build.timestamp" type="date" value="now" pattern="dd MMMM yyyy HH:mm:ss z"/>
+            <entry key="build.number" type="int" value="${build.number}" />
+        </propertyfile>
+        <loadproperties srcFile="${etc.dir}/build.properties"/>
+
+        <echo message="Build number: ${build.number}" />
+
+        <mkdir dir="${build.dir}"/>
+
+        <mkdir dir="${core.build.dir}"/>
+        <mkdir dir="${core.build.dir}/production-classes"/>
+        <mkdir dir="${core.build.dir}/test-classes"/>
+
+        <mkdir dir="${updater.build.dir}"/>
+        <mkdir dir="${updater.build.dir}/production-classes"/>
+        <mkdir dir="${updater.build.dir}/test-classes"/>
+
+        <mkdir dir="${web.build.dir}"/>
+        <mkdir dir="${web.build.dir}/production-classes"/>
+        <mkdir dir="${web.build.dir}/test-classes"/>
+
+        <mkdir dir="${dist.dir}"/>
+        <mkdir dir="${updater.dist.dir}"/>
+        <mkdir dir="${updater.dist.dir}/lib"/>
+        <mkdir dir="${web.dist.dir}"/>
+        <mkdir dir="${web.dist.dir}/WEB-INF"/>
+        <mkdir dir="${web.dist.dir}/WEB-INF/classes"/>
+        <mkdir dir="${web.dist.dir}/WEB-INF/lib"/>
+    </target>
+
+    <target name="compile" depends="init">
+        <javac srcdir="${core.dir}/src" destdir="${core.build.dir}/production-classes" debug="yes">
+            <classpath>
+                <fileset dir="${production.lib.dir}">
+                    <include name="*.jar"/>
+                </fileset>
+            </classpath>
+        </javac>
+
+        <javac srcdir="${core.dir}/test" destdir="${core.build.dir}/test-classes" debug="yes">
+            <classpath>
+                <fileset dir="${production.lib.dir}" includes="*.jar" />
+                <fileset dir="${test.lib.dir}" includes="*.jar" />
+                <pathelement location="${core.build.dir}/production-classes" />
+            </classpath>
+        </javac>
+
+        <javac srcdir="${updater.dir}/src" destdir="${updater.build.dir}/production-classes" debug="yes">
+            <classpath>
+                <fileset dir="${production.lib.dir}">
+                    <include name="*.jar"/>
+                </fileset>
+                <pathelement location="${core.build.dir}/production-classes" />
+            </classpath>
+        </javac>
+
+        <javac srcdir="${web.dir}/src" destdir="${web.build.dir}/production-classes" debug="yes">
+            <classpath>
+                <fileset dir="${env.TOMCAT_HOME}/lib/">
+                    <include name="*.jar"/>
+                </fileset>
+                <fileset dir="${production.lib.dir}">
+                    <include name="*.jar"/>
+                </fileset>
+                <pathelement location="${core.build.dir}/production-classes" />
+            </classpath>
+        </javac>
+
+        <javac srcdir="${web.dir}/test/unit" destdir="${web.build.dir}/test-classes" debug="yes">
+            <classpath>
+                <fileset dir="${env.TOMCAT_HOME}/lib/">
+                    <include name="*.jar"/>
+                </fileset>
+                <fileset dir="${production.lib.dir}" includes="*.jar" />
+                <fileset dir="${test.lib.dir}" includes="*.jar" />
+                <pathelement location="${core.build.dir}/production-classes" />
+                <pathelement location="${web.build.dir}/production-classes" />
+            </classpath>
+        </javac>
+    </target>
+
+    <target name="unit-tests" depends="compile">
+        <junit printsummary="yes" haltonfailure="yes">
+            <classpath>
+                <fileset dir="${production.lib.dir}" includes="*.jar" />
+                <pathelement location="${etc.dir}" />
+                <fileset dir="${test.lib.dir}" includes="*.jar" />
+                <pathelement location="${core.build.dir}/production-classes" />
+                <pathelement location="${core.build.dir}/test-classes"/>
+            </classpath>
+
+            <formatter type="plain"/>
+
+            <batchtest fork="no" todir="${build.dir}">
+                <fileset dir="${core.dir}/test/unit">
+                    <include name="**/*Tests.java"/>
+                </fileset>
+            </batchtest>
+        </junit>
+
+        <junit printsummary="yes" haltonfailure="yes">
+            <classpath>
+                <fileset dir="${production.lib.dir}" includes="*.jar" />
+                <fileset dir="${test.lib.dir}" includes="*.jar" />
+                <pathelement location="${core.build.dir}/production-classes" />
+                <pathelement location="${core.build.dir}/test-classes"/>
+                <pathelement location="${web.build.dir}/production-classes" />
+                <pathelement location="${web.build.dir}/test-classes"/>
+            </classpath>
+
+            <formatter type="plain"/>
+
+            <batchtest fork="no" todir="${build.dir}">
+                <fileset dir="${web.dir}/test/unit">
+                    <include name="**/*Test*.java"/>
+                </fileset>
+            </batchtest>
+        </junit>
+    </target>
+
+    <target name="build" depends="unit-tests">
+        <jar jarfile="${build.dir}/techtribes-core.jar">
+            <fileset dir="${core.build.dir}/production-classes"/>
+            <fileset file="${etc.dir}/build.properties"/>
+            <fileset dir="${core.dir}/src" includes="**/*.xml" />
+        </jar>
+
+        <jar jarfile="${build.dir}/techtribes-updater.jar">
+            <fileset dir="${updater.build.dir}/production-classes"/>
+            <fileset dir="${updater.dir}/src" includes="**/*.xml" />
+        </jar>
+
+        <jar jarfile="${build.dir}/techtribes-web.jar">
+            <fileset dir="${web.build.dir}/production-classes"/>
+            <fileset dir="${web.dir}/src" includes="**/*.xml" />
+        </jar>
+    </target>
+
+    <target name="component-tests" depends="build">
+        <junit printsummary="yes" haltonfailure="yes">
+            <classpath>
+                <fileset dir="${production.lib.dir}" includes="*.jar" />
+                <fileset dir="${test.lib.dir}" includes="*.jar" />
+                <pathelement location="${build.dir}/techtribes-core.jar" />
+                <pathelement location="${core.build.dir}/test-classes"/>
+                <pathelement location="${core.dir}/test/component"/>
+            </classpath>
+
+            <formatter type="plain"/>
+
+            <batchtest fork="no" todir="${build.dir}">
+                <fileset dir="${core.dir}/test/component">
+                    <include name="**/*Tests.java"/>
+                </fileset>
+            </batchtest>
+        </junit>
+    </target>
+
+    <target name="dist" depends="component-tests">
+        <copy todir="${updater.dist.dir}">
+            <fileset dir="${updater.dir}/etc" includes="applicationContext.xml" />
+            <fileset dir="${updater.dir}/etc" includes="log4j.properties" />
+            <fileset dir="${updater.dir}/bin" includes="*.sh" />
+        </copy>
+        <copy todir="${updater.dist.dir}/lib">
+            <fileset dir="${production.lib.dir}">
+                <include name="*.jar"/>
+            </fileset>
+            <fileset dir="${build.dir}" includes="techtribes-core.jar" />
+            <fileset dir="${build.dir}" includes="techtribes-updater.jar" />
+        </copy>
+
+        <copy todir="${web.dist.dir}">
+            <fileset dir="${web.dir}/web"/>
+        </copy>
+        <copy todir="${web.dist.dir}/WEB-INF">
+            <fileset dir="${web.dir}/etc" includes="techtribesje.tld" />
+        </copy>
+        <copy todir="${web.dist.dir}/WEB-INF/classes">
+            <fileset dir="${web.dir}/etc" includes="log4j.properties" />
+        </copy>
+        <copy todir="${web.dist.dir}/WEB-INF/lib">
+            <fileset dir="${production.lib.dir}">
+                <include name="*.jar"/>
+            </fileset>
+            <fileset dir="${build.dir}" includes="techtribes-core.jar" />
+            <fileset dir="${build.dir}" includes="techtribes-web.jar" />
+        </copy>
+
+        <zip destfile="${build.dir}/${project.name}-${build.number}.zip">
+            <fileset dir="${dist.dir}"/>
+        </zip>
+    </target>
+
+    <target name="clean">
+        <delete dir="${build.dir}"/>
+    </target>
+
+    <target name="upload">
+        <exec executable="scp">
+            <arg value="${build.dir}/${project.name}-${build.number}.zip"/>
+            <arg value="simon@techtribes.je:/tmp/"/>
+        </exec>
+    </target>
+
+    <target name="structure" depends="init">
+        <javac srcdir="${core.dir}/src" destdir="${core.build.dir}/production-classes" debug="yes">
+            <compilerarg value="-proc:only"/>
+            <compilerarg line="-processorpath /Users/simon/sandbox/structural-elements-of-software/java/out/production/elements"/>
+            <compilerarg line="-processor com.codingthearchitecture.seos.AnnotationProcessor"/>
+            <classpath>
+                <fileset dir="${production.lib.dir}">
+                    <include name="*.jar"/>
+                </fileset>
+            </classpath>
+        </javac>
+    </target>
+
+</project>

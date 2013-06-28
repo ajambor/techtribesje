@@ -1,0 +1,12 @@
+<c:set var="person" value="${tweet.contentSource}" />
+<div class="${tweet.contentSource.shortName} highlightableContent tweet">
+    <c:out value="${tweet.body}" escapeXml="true" /> <a href="${tweet.permalink}" target="_blank">#</a>
+    <br /><br />
+      <div class="metadata">
+          <div style="float: left;">
+              <a href="<techtribesje:goto contentSource="${tweet.contentSource}"/>"><img src="${tweet.contentSource.profileImageUrl}" alt="Profile image" class="profileImageSmall" /></a>
+          </div>
+          <a href="<techtribesje:goto contentSource="${tweet.contentSource}"/>">${tweet.contentSource.name}</a><br />
+          <techtribesje:date date="${tweet.timestamp}"/>
+      </div>
+</div>

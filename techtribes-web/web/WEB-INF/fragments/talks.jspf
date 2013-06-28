@@ -1,0 +1,38 @@
+<c:forEach var="talk" items="${talks}" varStatus="status">
+    <c:if test="${status.index % 3 == 0}">
+        <div class="row">
+    </c:if>
+            <div class="span4">
+
+                <div class="${talk.contentSource.shortName} talk highlightableContent">
+                    <div class="title">
+                        <a href="/talks/${talk.id}">${talk.title}</a>
+                    </div>
+                    ${talk.truncatedDescription}
+                    <div style="float: right;">
+                    <c:if test="${not empty talk.slidesUrl}"><a href="${talk.slidesUrl}" target="_blank"><i class="icon-th-large"></i></a></c:if>
+                    <c:if test="${not empty talk.videoUrl}"><a href="${talk.videoUrl}" target="_blank"><i class="icon-film"></i></a></c:if>
+                    </div>
+                    <br /><br />
+                    <div class="metadata">
+                        <div style="float: left;">
+                            <a href="<techtribesje:goto contentSource="${talk.contentSource}"/>"><img src="${talk.contentSource.profileImageUrl}" alt="Profile image" class="profileImageSmall" title="${talk.contentSource.name}" /></a> <img src="<techtribesje:flag name="${talk.country}" />" alt="${talk.country}" title="${talk.country}" />
+                        </div>
+                        ${talk.eventName}<br />
+                        ${talk.type} | <techtribesje:date date="${talk.date}" showTime="false" />
+                    </div>
+                </div>
+
+            </div>
+    <c:if test="${status.index % 3 == 2}">
+        </div>
+    </c:if>
+
+    <c:if test="${status.last and status.index % 3 ne 2}">
+        <c:forEach begin="1" end="${2-(status.index % 3)}">
+            <div class="span4">&nbsp;</div>
+        </c:forEach>
+        </div>
+    </c:if>
+</c:forEach>
+

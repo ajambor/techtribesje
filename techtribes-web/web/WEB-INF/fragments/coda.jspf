@@ -1,0 +1,47 @@
+
+        <hr />
+
+        <footer>
+            <c:if test="${empty pageContext.request.userPrincipal}">
+                <form action="/signin/twitter" method="POST">
+                    <input type="image" src="/static/img/sign-in-with-twitter-gray.png" alt="Sign in with Twitter" />
+                </form>
+            </c:if>
+
+            <p>
+            <a href="http://twitter.com/techtribesje" target="_blank"><img src="/static/img/twitter.png" alt="Twitter" /></a>
+            |
+            <a href="/rss.xml"><img src="/static/img/feed-icon-32x32.png" alt="Feed icon" /></a>
+            |
+            <a href="/activity">Most active</a>
+            |
+            <a href="/about">About techtribes.je</a>
+            </p>
+        </footer>
+
+    </div> <!-- /container -->
+
+    <script src="/static/js/bootstrap.min.js"></script>
+
+    <%
+        if (!request.getServerName().equals("127.0.0.1")) {
+    %>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-36233533-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+    <%
+        }
+    %>
+
+    <!-- Build number <%= je.techtribes.util.Version.getBuildNumber() %>; built on <%= je.techtribes.util.Version.getBuildTimestamp() %> -->
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+<c:choose>
+    <c:when test="${activity.contentSource.type == 'Community'}">
+        <div class="row">
+            <div class="span12">
+                <div class="progress" style="margin-bottom: 16px;">
+                    <div class="bar bar-talks" style="width: 25%">Talks</div>
+                    <div class="bar bar-content" style="width: 25%">Content</div>
+                    <div class="bar bar-tweets" style="width: 25%">Tweets</div>
+                    <div class="bar bar-events" style="width: 25%">Events</div>
+                </div>
+            </div>
+        </div>
+    </c:when>
+    <c:otherwise>
+        <div class="row">
+            <div class="span12">
+                <div class="progress" style="margin-bottom: 16px;">
+                    <div class="bar bar-talks" style="width: 33%">Talks</div>
+                    <div class="bar bar-content" style="width: 33%">Content</div>
+                    <div class="bar bar-tweets" style="width: 34%">Tweets</div>
+                </div>
+            </div>
+        </div>
+    </c:otherwise>
+</c:choose>
+
+<div class="row">
+    <div class="span12">
+        <div class="progress">
+            <c:if test="${(activity.internationalTalkScore + activity.localTalkScore) > 0}">
+            <div class="bar bar-talks" style="width: ${((activity.internationalTalkScore+activity.localTalkScore)/activity.rawScore)*100}%">${(activity.numberOfInternationalTalks + activity.numberOfLocalTalks)}</div>
+            </c:if>
+            <c:if test="${activity.newsFeedEntryScore > 0}">
+            <div class="bar bar-content" style="width: ${(activity.newsFeedEntryScore/activity.rawScore)*100}%">${activity.numberOfNewsFeedEntries}</div>
+            </c:if>
+            <c:if test="${activity.twitterScore > 0}">
+            <div class="bar bar-tweets" style="width: ${(activity.twitterScore/activity.rawScore)*100}%">${activity.numberOfTweets}</div>
+            </c:if>
+            <c:if test="${activity.eventScore > 0}">
+            <div class="bar bar-events" style="width: ${(activity.eventScore/activity.rawScore)*100}%">${activity.numberOfEvents}</div>
+            </c:if>
+        </div>
+    </div>
+</div>
