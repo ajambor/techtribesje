@@ -51,6 +51,7 @@ class ContentSourceResultExtractor implements ResultSetExtractor<ContentSource> 
 
         contentSource.setContentAggregated(rs.getBoolean("content_aggregated"));
         contentSource.setTwitterFollowersCount(rs.getInt("twitter_followers"));
+        contentSource.setSearchTerms(rs.getString("search_terms"));
 
         return contentSource;
     }

@@ -1,5 +1,5 @@
 <div class="row hidden-phone">
-    <div class="span3" style="text-align: center;">
+    <div class="span4" style="text-align: center;">
         <h4>Most active people</h4>
         <c:forEach var="activity" items="${activityListForPeople}" end="2">
             <a href="<techtribesje:goto contentSource="${activity.contentSource}" />"><img src="${activity.contentSource.profileImageUrl}" alt="Profile image" title="${activity.contentSource.name} (${activity.score} points)" class="profileImage" /></a>
@@ -9,7 +9,7 @@
             <a href="<techtribesje:goto contentSource="${activity.contentSource}" />"><img src="${activity.contentSource.profileImageUrl}" alt="Profile image" title="${activity.contentSource.name} (${activity.score} points)" class="profileImageSmall" /></a>
         </c:forEach>
     </div>
-    <div class="span3" style="text-align: center;">
+    <div class="span4" style="text-align: center;">
         <h4>Most active business tribes</h4>
         <c:forEach var="activity" items="${activityListForBusinessTribes}" end="2">
             <a href="<techtribesje:goto contentSource="${activity.contentSource}" />"><img src="${activity.contentSource.profileImageUrl}" alt="Profile image" title="${activity.contentSource.name} (${activity.score} points)" class="profileImage" /></a>
@@ -19,17 +19,7 @@
             <a href="<techtribesje:goto contentSource="${activity.contentSource}" />"><img src="${activity.contentSource.profileImageUrl}" alt="Profile image" title="${activity.contentSource.name} (${activity.score} points)" class="profileImageSmall" /></a>
         </c:forEach>
     </div>
-    <div class="span3" style="text-align: center;">
-        <h4>Most active tech tribes</h4>
-        <c:forEach var="activity" items="${activityListForTechTribes}" end="2">
-            <a href="<techtribesje:goto contentSource="${activity.contentSource}" />"><img src="${activity.contentSource.profileImageUrl}" alt="Profile image" title="${activity.contentSource.name} (${activity.score} points)" class="profileImage" /></a>
-        </c:forEach>
-        <br /><br />
-        <c:forEach var="activity" items="${activityListForTechTribes}" begin="3" end="9">
-            <a href="<techtribesje:goto contentSource="${activity.contentSource}" />"><img src="${activity.contentSource.profileImageUrl}" alt="Profile image" title="${activity.contentSource.name} (${activity.score} points)" class="profileImageSmall" /></a>
-        </c:forEach>
-    </div>
-    <div class="span3" style="text-align: center;">
+    <div class="span4" style="text-align: center;">
         <h4>Most active community tribes</h4>
         <c:forEach var="activity" items="${activityListForCommunityTribes}" end="2">
             <a href="<techtribesje:goto contentSource="${activity.contentSource}" />"><img src="${activity.contentSource.profileImageUrl}" alt="Profile image" title="${activity.contentSource.name} (${activity.score} points)" class="profileImage" /></a>

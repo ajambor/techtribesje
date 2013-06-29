@@ -114,6 +114,7 @@ public abstract class AbstractComponentTestsBase {
         coding.setName("Coding");
         coding.setIsland(Island.None);
         coding.setProfile("Here is some profile text about the coding tribe");
+        coding.setSearchTerms("coding programming java .net ruby php python perl");
         getContentSourceComponent().add(coding);
 
         Tribe dqmag = new Tribe(ContentSourceType.Media);

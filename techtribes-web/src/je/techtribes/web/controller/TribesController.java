@@ -7,6 +7,8 @@ import je.techtribes.component.github.GitHubComponent;
 import je.techtribes.component.job.JobComponent;
 import je.techtribes.component.newsfeedentry.NewsFeedEntryComponent;
 import je.techtribes.component.newsfeedentry.NewsFeedEntryException;
+import je.techtribes.component.search.SearchComponent;
+import je.techtribes.component.search.SearchResult;
 import je.techtribes.component.talk.TalkComponent;
 import je.techtribes.component.tweet.TweetComponent;
 import je.techtribes.component.tweet.TweetException;
@@ -38,9 +40,10 @@ public class TribesController extends AbstractController {
     private JobComponent jobService;
     private EventComponent eventService;
     private GitHubComponent gitHubComponent;
+    private SearchComponent searchComponent;
 
     @Autowired
-    public TribesController(BadgeComponent badgeComponent, NewsFeedEntryComponent newsFeedEntryComponent, TweetComponent tweetComponent, TalkComponent talkComponent, ActivityComponent activityComponent, JobComponent jobService, EventComponent eventService, GitHubComponent gitHubComponent) {
+    public TribesController(BadgeComponent badgeComponent, NewsFeedEntryComponent newsFeedEntryComponent, TweetComponent tweetComponent, TalkComponent talkComponent, ActivityComponent activityComponent, JobComponent jobService, EventComponent eventService, GitHubComponent gitHubComponent, SearchComponent searchComponent) {
         this.badgeComponent = badgeComponent;
         this.newsFeedEntryComponent = newsFeedEntryComponent;
         this.tweetComponent = tweetComponent;
@@ -49,6 +52,7 @@ public class TribesController extends AbstractController {
         this.jobService = jobService;
         this.eventService = eventService;
         this.gitHubComponent = gitHubComponent;
+        this.searchComponent = searchComponent;
     }
 
     @RequestMapping(value = "/tech", method = RequestMethod.GET)
@@ -104,20 +108,9 @@ public class TribesController extends AbstractController {
         // redirect to the jobs page for tribes where we're not aggregating content
         if (!tribe.isContentAggregated()) {
             return "redirect:/tribes/" + tribe.getShortName() + "/jobs";
+        } else if (tribe.getType() == ContentSourceType.Tech) {
+            return "redirect:/tribes/" + tribe.getShortName() + "/content";
         }
-
-        List<NewsFeedEntry> newsFeedEntries;
-        List<Tweet> tweets;
-        if (tribe.getType() == ContentSourceType.Tech) {
-            Collection<ContentSource> contentSources = createListOfShortNamesForTribeMembers(tribe);
-            newsFeedEntries = newsFeedEntryComponent.getRecentNewsFeedEntries(contentSources, 1, PageSize.RECENT_NEWS_FEED_ENTRIES);
-            tweets = tweetComponent.getRecentTweets(contentSources, 1, PageSize.RECENT_TWEETS);
-        } else {
-            newsFeedEntries = newsFeedEntryComponent.getRecentNewsFeedEntries(contentSource, PageSize.RECENT_NEWS_FEED_ENTRIES);
-            tweets = tweetComponent.getRecentTweets(tribe, PageSize.RECENT_TWEETS);
-        }
-
-        List<Job> jobs = jobService.getRecentJobs(contentSource, PageSize.RECENT_JOBS, false);
 
         Activity activity = activityComponent.getActivity(contentSource);
         List<AwardedBadge> badges = badgeComponent.getAwardedBadges(contentSource);
@@ -125,9 +118,6 @@ public class TribesController extends AbstractController {
 
         model.addAttribute("tribe", contentSource);
         model.addAttribute("badges", badges);
-        model.addAttribute("newsFeedEntries", newsFeedEntries);
-        model.addAttribute("tweets", tweets);
-        model.addAttribute("jobs", jobs);
         model.addAttribute("activeNav", "summary");
         model.addAttribute("activity", activity);
         addCommonAttributes(model);
@@ -148,32 +138,45 @@ public class TribesController extends AbstractController {
             log.error(shortName + " is not a tribe");
             return "404";
         }
+
         Tribe tribe = (Tribe)contentSource;
-        Collection<ContentSource> contentSources = createListOfShortNamesForTribeAndMembers(tribe);
-
-        List<Tweet> tweets = new LinkedList<>();
-        long numberOfTweets = tweetComponent.getNumberOfTweets(contentSources);
-        int maxPage = PageSize.calculateNumberOfPages(numberOfTweets, PageSize.RECENT_TWEETS);
-        page = PageSize.validatePage(page, maxPage);
-
-        if (numberOfTweets > 0) {
-            try {
-                tweets = tweetComponent.getRecentTweets(contentSources, page, PageSize.RECENT_TWEETS);
-            } catch (TweetException tse) {
-                log.warn("Couldn't retrieve tweets for " + shortName, tse);
-            }
-        }
-
         model.addAttribute("tribe", tribe);
-        model.addAttribute("tweets", tweets);
-        model.addAttribute("currentPage", page);
-        model.addAttribute("maxPage", maxPage);
         model.addAttribute("activeNav", "tweets");
-        model.addAttribute("contentSourceStatistics", new ContentSourceStatistics(tweets).getStatistics());
         addCommonAttributes(model);
-        setPageTitle(model, tribe.getName(), "Tweets", "" + page);
 
-        return "tribe-tweets";
+        if (tribe.getType() == ContentSourceType.Tech) {
+            String query = tribe.getSearchTerms();
+            List<SearchResult> searchResults = searchComponent.searchForTweets(query, 30);
+            model.addAttribute("query", query);
+            model.addAttribute("searchResults", searchResults);
+            model.addAttribute("contentSourceStatistics", new ContentSourceStatistics(searchResults).getStatistics());
+            setPageTitle(model, contentSource.getName(), "Tweets");
+
+            return "tribe-tweets-search";
+        } else {
+            Collection<ContentSource> contentSources = createListOfShortNamesForTribeAndMembers(tribe);
+
+            List<Tweet> tweets = new LinkedList<>();
+            long numberOfTweets = tweetComponent.getNumberOfTweets(contentSources);
+            int maxPage = PageSize.calculateNumberOfPages(numberOfTweets, PageSize.RECENT_TWEETS);
+            page = PageSize.validatePage(page, maxPage);
+
+            if (numberOfTweets > 0) {
+                try {
+                    tweets = tweetComponent.getRecentTweets(contentSources, page, PageSize.RECENT_TWEETS);
+                } catch (TweetException tse) {
+                    log.warn("Couldn't retrieve tweets for " + shortName, tse);
+                }
+            }
+
+            model.addAttribute("tweets", tweets);
+            model.addAttribute("currentPage", page);
+            model.addAttribute("maxPage", maxPage);
+            model.addAttribute("contentSourceStatistics", new ContentSourceStatistics(tweets).getStatistics());
+            setPageTitle(model, tribe.getName(), "Tweets", "" + page);
+
+            return "tribe-tweets";
+        }
 	}
 
     @RequestMapping(value="/tribes/{name:^[a-z-0-9]*$}/content", method = RequestMethod.GET)
@@ -189,32 +192,43 @@ public class TribesController extends AbstractController {
             return "404";
         }
         Tribe tribe = (Tribe)contentSource;
-
-        Collection<ContentSource> contentSources = createListOfShortNamesForTribeAndMembers(tribe);
-
-        List<NewsFeedEntry> newsFeedEntries = new LinkedList<>();
-        long numberOfNewsFeedEntries = newsFeedEntryComponent.getNumberOfNewsFeedEntries(contentSources);
-        int maxPage = PageSize.calculateNumberOfPages(numberOfNewsFeedEntries, PageSize.RECENT_NEWS_FEED_ENTRIES);
-        page = PageSize.validatePage(page, maxPage);
-
-        if (numberOfNewsFeedEntries > 0) {
-            try {
-                newsFeedEntries = newsFeedEntryComponent.getRecentNewsFeedEntries(contentSources, page, PageSize.RECENT_NEWS_FEED_ENTRIES);
-            } catch (NewsFeedEntryException nfse) {
-                log.warn("Couldn't retrieve content for " + shortName, nfse);
-            }
-        }
-
         model.addAttribute("tribe", contentSource);
-        model.addAttribute("newsFeedEntries", newsFeedEntries);
-        model.addAttribute("currentPage", page);
-        model.addAttribute("maxPage", maxPage);
         model.addAttribute("activeNav", "content");
-        model.addAttribute("contentSourceStatistics", new ContentSourceStatistics(newsFeedEntries).getStatistics());
         addCommonAttributes(model);
-        setPageTitle(model, contentSource.getName(), "Content", "" + page);
 
-        return "tribe-content";
+        if (tribe.getType() == ContentSourceType.Tech) {
+            String query = tribe.getSearchTerms();
+            List<SearchResult> searchResults = searchComponent.searchForNewsFeedEntries(query, 30);
+            model.addAttribute("query", query);
+            model.addAttribute("searchResults", searchResults);
+            model.addAttribute("contentSourceStatistics", new ContentSourceStatistics(searchResults).getStatistics());
+            setPageTitle(model, contentSource.getName(), "Content");
+
+            return "tribe-content-search";
+        } else {
+            Collection<ContentSource> contentSources = createListOfShortNamesForTribeAndMembers(tribe);
+
+            List<NewsFeedEntry> newsFeedEntries = new LinkedList<>();
+            long numberOfNewsFeedEntries = newsFeedEntryComponent.getNumberOfNewsFeedEntries(contentSources);
+            int maxPage = PageSize.calculateNumberOfPages(numberOfNewsFeedEntries, PageSize.RECENT_NEWS_FEED_ENTRIES);
+            page = PageSize.validatePage(page, maxPage);
+
+            if (numberOfNewsFeedEntries > 0) {
+                try {
+                    newsFeedEntries = newsFeedEntryComponent.getRecentNewsFeedEntries(contentSources, page, PageSize.RECENT_NEWS_FEED_ENTRIES);
+                } catch (NewsFeedEntryException nfse) {
+                    log.warn("Couldn't retrieve content for " + shortName, nfse);
+                }
+            }
+
+            model.addAttribute("newsFeedEntries", newsFeedEntries);
+            model.addAttribute("currentPage", page);
+            model.addAttribute("maxPage", maxPage);
+            model.addAttribute("contentSourceStatistics", new ContentSourceStatistics(newsFeedEntries).getStatistics());
+            setPageTitle(model, contentSource.getName(), "Content", "" + page);
+
+            return "tribe-content";
+        }
 	}
 
     @RequestMapping(value="/tribes/{name:^[a-z-0-9]*$}/talks", method = RequestMethod.GET)

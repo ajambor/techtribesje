@@ -23,7 +23,7 @@ class JdbcContentSourceDao implements ContentSourceDao {
     @Override
     public List<ContentSource> loadContentSources() {
         JdbcTemplate select = new JdbcTemplate(dataSource);
-        List<ContentSource> contentSources = select.query("select id, name, twitter_id, github_id, island, type, feed_url1, feed_url2, feed_url3, profile_text, profile_image_url, url, content_aggregated, twitter_followers from content_source order by name asc",
+        List<ContentSource> contentSources = select.query("select id, name, twitter_id, github_id, island, type, feed_url1, feed_url2, feed_url3, profile_text, profile_image_url, url, content_aggregated, twitter_followers, search_terms from content_source order by name asc",
                 new ContentSourceRowMapper());
 
         // and we also need to load the tribe->people mappings
@@ -54,7 +54,7 @@ class JdbcContentSourceDao implements ContentSourceDao {
     @Override
     public void add(ContentSource contentSource) {
         JdbcTemplate insert = new JdbcTemplate(dataSource);
-        insert.update("insert into content_source (name, twitter_id, github_id, island, type, profile_text, profile_image_url, url, feed_url1, feed_url2, feed_url3, content_aggregated) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+        insert.update("insert into content_source (name, twitter_id, github_id, island, type, profile_text, profile_image_url, url, feed_url1, feed_url2, feed_url3, content_aggregated, search_terms) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
             contentSource.getName(),
             contentSource.getTwitterId(),
             contentSource.getGitHubId(),
@@ -66,7 +66,8 @@ class JdbcContentSourceDao implements ContentSourceDao {
             contentSource.getNewsFeeds().size() > 0 ? new LinkedList<>(contentSource.getNewsFeeds()).get(0).getUrl() : null,
             contentSource.getNewsFeeds().size() > 1 ? new LinkedList<>(contentSource.getNewsFeeds()).get(1).getUrl() : null,
             contentSource.getNewsFeeds().size() > 2 ? new LinkedList<>(contentSource.getNewsFeeds()).get(2).getUrl() : null,
-            contentSource.isContentAggregated());
+            contentSource.isContentAggregated(),
+            contentSource.getSearchTerms());
     }
 
     @Override

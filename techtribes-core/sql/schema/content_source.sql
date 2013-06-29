@@ -15,4 +15,5 @@ CREATE TABLE content_source (
     url varchar(512),
     content_aggregated bit not null default 1,
     twitter_followers int not null default 0,
+    search_terms varchar(1024),
     primary key (id));

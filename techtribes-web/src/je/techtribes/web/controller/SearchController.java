@@ -29,24 +29,20 @@ public class SearchController extends AbstractController {
         setPageTitle(model, "Search");
 
         if (query != null && !query.isEmpty()) {
-            List<SearchResult> results;
+            List<SearchResult> searchResults;
             if (query.startsWith("#") || query.startsWith("@")) {
-                results = searchService.searchForTweets(query, PageSize.SEARCH_RESULTS);
+                searchResults = searchService.searchForTweets(query, PageSize.SEARCH_RESULTS);
             } else if (query.startsWith("!")) {
-                results = searchService.searchForAll(query.substring(1), PageSize.SEARCH_RESULTS);
+                searchResults = searchService.searchForAll(query.substring(1), PageSize.SEARCH_RESULTS);
             } else {
-                results = searchService.searchForNewsFeedEntries(query, PageSize.SEARCH_RESULTS);
+                searchResults = searchService.searchForNewsFeedEntries(query, PageSize.SEARCH_RESULTS);
             }
 
             model.addAttribute("query", query);
-            if (results.size() == 0) {
-                return "noSearchResults";
-            } else {
-                model.addAttribute("results", results);
-                model.addAttribute("contentSourceStatistics", new ContentSourceStatistics(results).getStatistics());
+            model.addAttribute("searchResults", searchResults);
+            model.addAttribute("contentSourceStatistics", new ContentSourceStatistics(searchResults).getStatistics());
 
-                return "search";
-            }
+            return "search";
         } else {
             return "redirect:/";
         }

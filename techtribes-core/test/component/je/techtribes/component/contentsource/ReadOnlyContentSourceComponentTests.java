@@ -21,6 +21,7 @@ public class ReadOnlyContentSourceComponentTests extends AbstractComponentTestsB
         assertEquals("http://www.simonbrown.je", person.getUrl().toString());
         assertEquals("simonbrown", person.getTwitterId());
         assertNull(person.getGitHubId());
+        assertNull(person.getSearchTerms());
         assertEquals("http://techtribes.je/static/img/default-profile-image.png", person.getProfileImageUrl().toString());
         assertEquals(0, person.getTwitterFollowersCount());
         assertEquals(0, person.getNumberOfTribes());
@@ -47,6 +48,18 @@ public class ReadOnlyContentSourceComponentTests extends AbstractComponentTestsB
         assertEquals(Island.Jersey, tribe.getIsland());
         assertEquals("http://www.techtribes.je", tribe.getUrl().toString());
         assertEquals("techtribesje", tribe.getTwitterId());
+        assertEquals(null, tribe.getGitHubId());
+    }
+
+    @Test
+    public void testTechTribeDetailsAreCorrectlyLoadedFromTheDatabase() {
+        Tribe tribe = (Tribe)getContentSourceComponent().findByShortName("coding");
+        assertEquals(ContentSourceType.Tech, tribe.getType());
+        assertEquals("Coding", tribe.getName());
+        assertEquals(Island.None, tribe.getIsland());
+        assertNull(tribe.getUrl());
+        assertNull(tribe.getTwitterId());
+        assertEquals("coding programming java .net ruby php python perl", tribe.getSearchTerms());
         assertEquals(null, tribe.getGitHubId());
     }
 

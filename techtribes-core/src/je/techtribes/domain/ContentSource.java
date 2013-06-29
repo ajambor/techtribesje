@@ -30,6 +30,8 @@ public abstract class ContentSource implements Comparable<ContentSource> {
     private boolean active = false;
     private boolean signedIn = false;
 
+    private String searchTerms;
+
     private Set<NewsFeed> newsFeeds = new HashSet<>();
 
     public ContentSource(ContentSourceType type) {
@@ -193,6 +195,14 @@ public abstract class ContentSource implements Comparable<ContentSource> {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public String getSearchTerms() {
+        return searchTerms;
+    }
+
+    public void setSearchTerms(String searchTerms) {
+        this.searchTerms = searchTerms;
     }
 
     @Override

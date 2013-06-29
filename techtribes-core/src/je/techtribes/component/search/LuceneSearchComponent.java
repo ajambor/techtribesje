@@ -217,7 +217,7 @@ class LuceneSearchComponent extends AbstractComponent implements SearchComponent
         try {
             switch (type) {
                 case NewsFeedEntry:
-                    queryAsString = queryAsString + " AND type:n";
+                    queryAsString = "(" + queryAsString + ") AND type:n";
                     break;
                 case Tweet:
                     if (queryAsString.startsWith("#")) {
@@ -225,7 +225,7 @@ class LuceneSearchComponent extends AbstractComponent implements SearchComponent
                     } else if (queryAsString.startsWith("@")) {
                         queryAsString = "twitter-users:" + queryAsString.substring(1) + " AND type:t";
                     } else {
-                        queryAsString = queryAsString + " AND type:t";
+                        queryAsString = "(" + queryAsString + ") AND type:t";
                     }
                     break;
                 case All:

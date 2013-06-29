@@ -85,28 +85,10 @@ public class PeopleController extends AbstractController {
         ContentSource contentSource = contentSourceComponent.findByShortName(shortName);
         List<AwardedBadge> badges = badgeComponent.getAwardedBadges(contentSource);
         Collections.sort(badges, new AwardedBadgeComparator());
-        List<NewsFeedEntry> newsFeedEntries = newsFeedEntryComponent.getRecentNewsFeedEntries(contentSource, PageSize.RECENT_NEWS_FEED_ENTRIES);
-        List<Tweet> tweets = tweetComponent.getRecentTweets(contentSource, PageSize.RECENT_TWEETS);
-
-        List<Talk> talks = talksService.getTalks(contentSource);
-        Set<String> countries = new TreeSet<>();
-        for (Talk talk : talks) {
-            countries.add(talk.getCountry());
-        }
-
-        if (talks.size() > PageSize.RECENT_TALKS) {
-            talks = talks.subList(0, PageSize.RECENT_TALKS);
-        }
-
         Activity activity = activityComponent.getActivity(contentSource);
 
         model.addAttribute("person", contentSource);
         model.addAttribute("badges", badges);
-        model.addAttribute("newsFeedEntries", newsFeedEntries);
-        model.addAttribute("tweets", tweets);
-        model.addAttribute("talks", talks);
-        model.addAttribute("countries", countries);
-        model.addAttribute("numberOfCountries", countries.size());
         model.addAttribute("activeNav", "summary");
         model.addAttribute("activity", activity);
         addCommonAttributes(model);

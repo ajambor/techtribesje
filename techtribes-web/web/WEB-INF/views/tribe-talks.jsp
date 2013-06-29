@@ -1,7 +1,7 @@
 <%@ include file="/WEB-INF/fragments/tribe-profile.jspf" %>
 
 <div class="talksSection">
-    <div class="subSectionHeading">Talks by members</div>
+    <div class="subSectionHeading">Talks by the tribe's members</div>
 
     <c:choose>
         <c:when test="${not empty talks}">
