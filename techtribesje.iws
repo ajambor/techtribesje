@@ -12,14 +12,22 @@
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/techtribes-web/web/WEB-INF/views/tribe-tweets-search.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/techtribes-core/test/component/je/techtribes/AbstractComponentTestsBase.java" afterPath="$PROJECT_DIR$/techtribes-core/test/component/je/techtribes/AbstractComponentTestsBase.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/techtribes-core/src/je/techtribes/component/activity/ActivityComponent.java" afterPath="$PROJECT_DIR$/techtribes-core/src/je/techtribes/component/activity/ActivityComponent.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/techtribes-core/src/je/techtribes/component/activity/ActivityComponentImpl.java" afterPath="$PROJECT_DIR$/techtribes-core/src/je/techtribes/component/activity/ActivityComponentImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/techtribes-core/test/component/je/techtribes/component/activity/ActivityComponentTests.java" afterPath="$PROJECT_DIR$/techtribes-core/test/component/je/techtribes/component/activity/ActivityComponentTests.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/techtribes-web/src/je/techtribes/web/controller/ActivityController.java" afterPath="$PROJECT_DIR$/techtribes-web/src/je/techtribes/web/controller/ActivityController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/techtribes-core/src/je/techtribes/domain/ContentSource.java" afterPath="$PROJECT_DIR$/techtribes-core/src/je/techtribes/domain/ContentSource.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/techtribes-core/src/je/techtribes/component/contentsource/ContentSourceResultExtractor.java" afterPath="$PROJECT_DIR$/techtribes-core/src/je/techtribes/component/contentsource/ContentSourceResultExtractor.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/techtribes-core/src/je/techtribes/component/contentsource/JdbcContentSourceDao.java" afterPath="$PROJECT_DIR$/techtribes-core/src/je/techtribes/component/contentsource/JdbcContentSourceDao.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/techtribes-core/src/je/techtribes/component/search/LuceneSearchComponent.java" afterPath="$PROJECT_DIR$/techtribes-core/src/je/techtribes/component/search/LuceneSearchComponent.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/techtribes-web/src/je/techtribes/web/controller/PeopleController.java" afterPath="$PROJECT_DIR$/techtribes-web/src/je/techtribes/web/controller/PeopleController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/techtribes-core/test/component/je/techtribes/component/contentsource/ReadOnlyContentSourceComponentTests.java" afterPath="$PROJECT_DIR$/techtribes-core/test/component/je/techtribes/component/contentsource/ReadOnlyContentSourceComponentTests.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/techtribes-web/src/je/techtribes/web/controller/RecentSummaryPageController.java" afterPath="$PROJECT_DIR$/techtribes-web/src/je/techtribes/web/controller/RecentSummaryPageController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/techtribes-web/src/je/techtribes/web/controller/SearchController.java" afterPath="$PROJECT_DIR$/techtribes-web/src/je/techtribes/web/controller/SearchController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/techtribes-core/src/je/techtribes/domain/Tribe.java" afterPath="$PROJECT_DIR$/techtribes-core/src/je/techtribes/domain/Tribe.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/techtribes-core/test/unit/je/techtribes/domain/TribeTests.java" afterPath="$PROJECT_DIR$/techtribes-core/test/unit/je/techtribes/domain/TribeTests.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/techtribes-web/src/je/techtribes/web/controller/TribesController.java" afterPath="$PROJECT_DIR$/techtribes-web/src/je/techtribes/web/controller/TribesController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/techtribes-web/web/WEB-INF/views/activity.jsp" afterPath="$PROJECT_DIR$/techtribes-web/web/WEB-INF/views/activity.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/techtribes-core/sql/schema/content_source.sql" afterPath="$PROJECT_DIR$/techtribes-core/sql/schema/content_source.sql" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/techtribes-web/web/WEB-INF/views/home.jsp" afterPath="$PROJECT_DIR$/techtribes-web/web/WEB-INF/views/home.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/techtribes-web/web/WEB-INF/views/noSearchResults.jsp" afterPath="$PROJECT_DIR$/techtribes-web/web/WEB-INF/views/noSearchResults.jsp" />
@@ -222,7 +230,7 @@
     <file path="/TribalBadge.java" changelist="2386faa0-5294-492e-ac82-b70a8e302643" time="1372353152499" ignored="false" />
     <file path="/TribalBadgeTests.java" changelist="2386faa0-5294-492e-ac82-b70a8e302643" time="1372353600649" ignored="false" />
     <file path="/BadgeTestsSupport.java" changelist="2386faa0-5294-492e-ac82-b70a8e302643" time="1372353830425" ignored="false" />
-    <file path="/Tribe.java" changelist="2386faa0-5294-492e-ac82-b70a8e302643" time="1372353363648" ignored="false" />
+    <file path="/Tribe.java" changelist="2386faa0-5294-492e-ac82-b70a8e302643" time="1372530846953" ignored="false" />
     <file path="/HowlerBadgeTests.java" changelist="2386faa0-5294-492e-ac82-b70a8e302643" time="1372355333968" ignored="false" />
     <file path="/TalkBadge.java" changelist="2386faa0-5294-492e-ac82-b70a8e302643" time="1372354133086" ignored="false" />
     <file path="/AbstractHowlerBadge.java" changelist="2386faa0-5294-492e-ac82-b70a8e302643" time="1372354300872" ignored="false" />
@@ -255,6 +263,7 @@
     <file path="/searchResults.jspf" changelist="2386faa0-5294-492e-ac82-b70a8e302643" time="1372525378406" ignored="false" />
     <file path="/tribe-tweets-search.jsp" changelist="2386faa0-5294-492e-ac82-b70a8e302643" time="1372525761818" ignored="false" />
     <file path="/tribe-content-search.jsp" changelist="2386faa0-5294-492e-ac82-b70a8e302643" time="1372527101861" ignored="false" />
+    <file path="/TribeTests.java" changelist="2386faa0-5294-492e-ac82-b70a8e302643" time="1372531235387" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -419,91 +428,91 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="tribe-content.jsp" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/techtribes-web/web/WEB-INF/views/tribe-content.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="74" selection-start="164" selection-end="164" vertical-scroll-proportion="-1.875">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tribe-tweets.jsp" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/techtribes-web/web/WEB-INF/views/tribe-tweets.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="49" selection-start="138" selection-end="138" vertical-scroll-proportion="-1.875">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tribe-talks.jsp" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/techtribes-web/web/WEB-INF/views/tribe-talks.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="48" selection-start="136" selection-end="136" vertical-scroll-proportion="-1.875">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tribe-code.jsp" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/techtribes-web/web/WEB-INF/views/tribe-code.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="241" selection-start="519" selection-end="519" vertical-scroll-proportion="-5.625">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="code.jsp" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/techtribes-web/web/WEB-INF/views/code.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="0" selection-start="1370" selection-end="1370" vertical-scroll-proportion="-10.625">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="person-code.jsp" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/techtribes-web/web/WEB-INF/views/person-code.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="0" selection-start="533" selection-end="533" vertical-scroll-proportion="-5.25">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PeopleController.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/techtribes-web/src/je/techtribes/web/controller/PeopleController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="82" column="0" selection-start="3654" selection-end="3654" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="person.jsp" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/techtribes-web/web/WEB-INF/views/person.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="52" selection-start="581" selection-end="581" vertical-scroll-proportion="-8.125">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tribe-content-search.jsp" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="tribe-content-search.jsp" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/techtribes-web/web/WEB-INF/views/tribe-content-search.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="21" selection-start="317" selection-end="317" vertical-scroll-proportion="0.40983605">
+            <state line="10" column="21" selection-start="317" selection-end="317" vertical-scroll-proportion="-6.25">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tribe-tweets-search.jsp" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/techtribes-web/web/WEB-INF/views/tribe-tweets-search.jsp">
+      <file leaf-file-name="ActivityComponent.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/techtribes-core/src/je/techtribes/component/activity/ActivityComponent.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="0" selection-start="288" selection-end="288" vertical-scroll-proportion="-5.625">
+            <state line="20" column="0" selection-start="501" selection-end="501" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ActivityComponentImpl.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/techtribes-core/src/je/techtribes/component/activity/ActivityComponentImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="210" column="1" selection-start="9541" selection-end="9541" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TribeTests.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/techtribes-core/test/unit/je/techtribes/domain/TribeTests.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="133" column="0" selection-start="3542" selection-end="3542" vertical-scroll-proportion="0.5">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ActivityComponentTests.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/techtribes-core/test/component/je/techtribes/component/activity/ActivityComponentTests.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="73" column="0" selection-start="3340" selection-end="3340" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RecentSummaryPageController.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/techtribes-web/src/je/techtribes/web/controller/RecentSummaryPageController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="76" column="18" selection-start="3477" selection-end="3477" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="home.jsp" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/techtribes-web/web/WEB-INF/views/home.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="1.875">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ActivityController.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/techtribes-web/src/je/techtribes/web/controller/ActivityController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="28" column="52" selection-start="1147" selection-end="1147" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Tribe.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/techtribes-core/src/je/techtribes/domain/Tribe.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="66" column="36" selection-start="1592" selection-end="1592" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="activity.jsp" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/techtribes-web/web/WEB-INF/views/activity.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="87" column="0" selection-start="3424" selection-end="3424" vertical-scroll-proportion="-11.125">
               <folding />
             </state>
           </provider>
@@ -527,14 +536,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/techtribes-core/src/je/techtribes/domain/ContentSource.java" />
-        <option value="$PROJECT_DIR$/techtribes-core/src/je/techtribes/component/contentsource/JdbcContentSourceDao.java" />
-        <option value="$PROJECT_DIR$/techtribes-core/src/je/techtribes/component/contentsource/ContentSourceResultExtractor.java" />
-        <option value="$PROJECT_DIR$/techtribes-core/sql/schema/content_source.sql" />
-        <option value="$PROJECT_DIR$/techtribes-core/src/je/techtribes/component/search/LuceneSearchComponent.java" />
-        <option value="$PROJECT_DIR$/techtribes-web/src/je/techtribes/web/controller/TribesController.java" />
-        <option value="$PROJECT_DIR$/techtribes-web/web/WEB-INF/views/tribe.jsp" />
-        <option value="$PROJECT_DIR$/techtribes-web/web/WEB-INF/views/tribe-content.jsp" />
         <option value="$PROJECT_DIR$/techtribes-web/web/WEB-INF/views/tribe-tweets.jsp" />
         <option value="$PROJECT_DIR$/techtribes-web/web/WEB-INF/views/tribe-talks.jsp" />
         <option value="$PROJECT_DIR$/techtribes-web/web/WEB-INF/views/tribe-code.jsp" />
@@ -543,6 +544,14 @@
         <option value="$PROJECT_DIR$/techtribes-web/web/WEB-INF/views/person.jsp" />
         <option value="$PROJECT_DIR$/techtribes-web/web/WEB-INF/views/tribe-tweets-search.jsp" />
         <option value="$PROJECT_DIR$/techtribes-web/web/WEB-INF/views/tribe-content-search.jsp" />
+        <option value="$PROJECT_DIR$/techtribes-core/src/je/techtribes/component/activity/ActivityComponent.java" />
+        <option value="$PROJECT_DIR$/techtribes-core/src/je/techtribes/component/activity/ActivityComponentImpl.java" />
+        <option value="$PROJECT_DIR$/techtribes-core/test/component/je/techtribes/component/activity/ActivityComponentTests.java" />
+        <option value="$PROJECT_DIR$/techtribes-web/src/je/techtribes/web/controller/RecentSummaryPageController.java" />
+        <option value="$PROJECT_DIR$/techtribes-web/src/je/techtribes/web/controller/ActivityController.java" />
+        <option value="$PROJECT_DIR$/techtribes-web/web/WEB-INF/views/activity.jsp" />
+        <option value="$PROJECT_DIR$/techtribes-core/src/je/techtribes/domain/Tribe.java" />
+        <option value="$PROJECT_DIR$/techtribes-core/test/unit/je/techtribes/domain/TribeTests.java" />
       </list>
     </option>
   </component>
@@ -829,7 +838,7 @@
       <recent name="je.techtribes.util.comparator" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.Component tests in techtribes-core">
+  <component name="RunManager" selected="Tomcat Server.techtribes-web">
     <configuration default="false" name="Component tests in techtribes-core" type="JUnit" factoryName="JUnit" temporary="true">
       <extension name="coverage" enabled="false" merge="false" runner="idea" />
       <module name="techtribes-core" />
@@ -1395,69 +1404,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/techtribes-web/web/WEB-INF/fragments/searchResults.jspf">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="22" selection-start="1241" selection-end="1241" vertical-scroll-proportion="-16.25">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/techtribes-web/web/WEB-INF/views/search.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="90" selection-start="93" selection-end="93" vertical-scroll-proportion="-1.25">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/techtribes-web/src/je/techtribes/web/controller/SearchController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="0" selection-start="1723" selection-end="1723" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/techtribes-core/src/je/techtribes/component/search/LuceneSearchComponent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="227" column="46" selection-start="9783" selection-end="9783" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/techtribes-web/src/je/techtribes/web/controller/TribesController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="120" column="0" selection-start="5308" selection-end="5308" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/techtribes-web/web/WEB-INF/views/tribe.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="7" selection-start="916" selection-end="916" vertical-scroll-proportion="-13.75">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/techtribes-web/web/WEB-INF/views/tribe-content.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="74" selection-start="164" selection-end="164" vertical-scroll-proportion="-1.875">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/techtribes-web/web/WEB-INF/views/tribe-tweets.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="49" selection-start="138" selection-end="138" vertical-scroll-proportion="-1.875">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/techtribes-web/web/WEB-INF/views/tribe-talks.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="48" selection-start="136" selection-end="136" vertical-scroll-proportion="-1.875">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/techtribes-web/web/WEB-INF/views/tribe-code.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state line="11" column="241" selection-start="519" selection-end="519" vertical-scroll-proportion="-5.625">
@@ -1502,7 +1448,70 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/techtribes-web/web/WEB-INF/views/tribe-content-search.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="21" selection-start="317" selection-end="317" vertical-scroll-proportion="0.40983605">
+        <state line="10" column="21" selection-start="317" selection-end="317" vertical-scroll-proportion="-6.25">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/techtribes-core/src/je/techtribes/component/activity/ActivityComponent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="0" selection-start="501" selection-end="501" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/techtribes-core/test/component/je/techtribes/component/activity/ActivityComponentTests.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="73" column="0" selection-start="3340" selection-end="3340" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/techtribes-web/src/je/techtribes/web/controller/RecentSummaryPageController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="76" column="18" selection-start="3477" selection-end="3477" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/techtribes-web/web/WEB-INF/views/home.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="1.875">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/techtribes-web/web/WEB-INF/views/activity.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="87" column="0" selection-start="3424" selection-end="3424" vertical-scroll-proportion="-11.125">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/techtribes-web/src/je/techtribes/web/controller/ActivityController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="52" selection-start="1147" selection-end="1147" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/techtribes-core/src/je/techtribes/domain/Tribe.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="66" column="36" selection-start="1592" selection-end="1592" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/techtribes-core/src/je/techtribes/component/activity/ActivityComponentImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="210" column="1" selection-start="9541" selection-end="9541" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/techtribes-core/test/unit/je/techtribes/domain/TribeTests.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="133" column="0" selection-start="3542" selection-end="3542" vertical-scroll-proportion="0.5">
           <folding />
         </state>
       </provider>

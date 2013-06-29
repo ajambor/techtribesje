@@ -71,10 +71,6 @@ public class ActivityComponentTests extends AbstractComponentTestsBase {
         List<Activity> activityListForCommunityTribes = getActivityComponent().getActivityListForCommunityTribes();
         assertEquals(1, activityListForCommunityTribes.size());
         assertEquals("techtribes.je", activityListForCommunityTribes.get(0).getContentSource().getName());
-
-        List<Activity> activityListForTechTribes = getActivityComponent().getActivityListForTechTribes();
-        assertEquals(1, activityListForTechTribes.size());
-        assertEquals("Coding", activityListForTechTribes.get(0).getContentSource().getName());
     }
 
     @Test

@@ -59,4 +59,12 @@ public class Tribe extends ContentSource {
         }
     }
 
+    @Override
+    public boolean isActive() {
+        if (getType() == ContentSourceType.Tech) {
+            return true;
+        } else {
+            return super.isActive();
+        }
+    }
 }

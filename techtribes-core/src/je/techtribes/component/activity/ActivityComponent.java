@@ -18,8 +18,6 @@ public interface ActivityComponent {
 
     List<Activity> getActivityListForBusinessTribes();
 
-    List<Activity> getActivityListForTechTribes();
-
     List<Activity> getActivityListForCommunityTribes();
 
     Activity getActivity(ContentSource contentSource);

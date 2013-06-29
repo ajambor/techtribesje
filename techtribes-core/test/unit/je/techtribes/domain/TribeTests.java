@@ -123,4 +123,28 @@ public class TribeTests {
         assertSame(person2, tribe.getMembers().toArray()[1]);
     }
 
+    @Test
+    public void test_isActive_AlwaysReturnsTrue_WhenTheTribeIsATechTribe() {
+        tribe = new Tribe(ContentSourceType.Tech);
+        assertTrue(tribe.isActive());
+
+        tribe.setActive(true);
+        assertTrue(tribe.isActive());
+
+        tribe.setActive(false);
+        assertTrue(tribe.isActive());
+    }
+
+    @Test
+    public void test_isActive_DoesntAlwaysReturnTrue_WhenTheTribeIsANotTechTribe() {
+        tribe = new Tribe(ContentSourceType.Business);
+        assertFalse(tribe.isActive());
+
+        tribe.setActive(true);
+        assertTrue(tribe.isActive());
+
+        tribe.setActive(false);
+        assertFalse(tribe.isActive());
+    }
+
 }

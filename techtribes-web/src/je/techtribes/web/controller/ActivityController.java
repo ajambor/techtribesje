@@ -31,9 +31,6 @@ public class ActivityController extends AbstractController {
         model.addAttribute("activityListForBusinessTribes", activityComponent.getActivityListForBusinessTribes());
         model.addAttribute("topScoreForBusinessTribes", calculateTopRawScore(activityComponent.getActivityListForBusinessTribes()));
 
-        model.addAttribute("activityListForTechTribes", activityComponent.getActivityListForTechTribes());
-        model.addAttribute("topScoreForTechTribes", calculateTopRawScore(activityComponent.getActivityListForTechTribes()));
-
         model.addAttribute("activityListForCommunityTribes", activityComponent.getActivityListForCommunityTribes());
         model.addAttribute("topScoreForCommunityTribes", calculateTopRawScore(activityComponent.getActivityListForCommunityTribes()));
 

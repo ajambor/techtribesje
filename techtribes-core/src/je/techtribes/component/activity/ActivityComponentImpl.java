@@ -26,8 +26,6 @@ class ActivityComponentImpl extends AbstractComponent implements ActivityCompone
     private Map<ContentSource, Activity> activitiesByContentSource = new HashMap<>();
     private List<Activity> activityListForPeople = new LinkedList<>();
     private List<Activity> activityListForBusinessTribes = new LinkedList<>();
-    private List<Activity> activityListForTechTribes = new LinkedList<>();
-    private List<Activity> activityListForMediaTribes = new LinkedList<>();
     private List<Activity> activityListForCommunityTribes = new LinkedList<>();
 
     ActivityComponentImpl(ContentSourceComponent contentSourceComponent, NewsFeedEntryComponent newsFeedEntryComponent, TweetComponent tweetComponent, TalkComponent talkComponent, EventComponent eventComponent, ActivityDao activityDao) {
@@ -105,10 +103,6 @@ class ActivityComponentImpl extends AbstractComponent implements ActivityCompone
         return activityListForBusinessTribes;
     }
 
-    public List<Activity> getActivityListForTechTribes() {
-        return activityListForTechTribes;
-    }
-
     public List<Activity> getActivityListForCommunityTribes() {
         return activityListForCommunityTribes;
     }
@@ -127,7 +121,6 @@ class ActivityComponentImpl extends AbstractComponent implements ActivityCompone
         try {
             List<Activity> activityListForPeople = new LinkedList<>();
             List<Activity> activityListForBusinessTribes = new LinkedList<>();
-            List<Activity> activityListForTechTribes = new LinkedList<>();
             List<Activity> activityListForMediaTribes = new LinkedList<>();
             List<Activity> activityListForCommunityTribes = new LinkedList<>();
 
@@ -166,9 +159,6 @@ class ActivityComponentImpl extends AbstractComponent implements ActivityCompone
                     case Business:
                         activityListForBusinessTribes.add(activity);
                         break;
-                    case Tech:
-                        activityListForTechTribes.add(activity);
-                        break;
                     case Media:
                         activityListForMediaTribes.add(activity);
                         break;
@@ -180,15 +170,12 @@ class ActivityComponentImpl extends AbstractComponent implements ActivityCompone
 
             Collections.sort(activityListForPeople, new ActivityByScoreComparator());
             Collections.sort(activityListForBusinessTribes, new ActivityByScoreComparator());
-            Collections.sort(activityListForTechTribes, new ActivityByScoreComparator());
             Collections.sort(activityListForCommunityTribes, new ActivityByScoreComparator());
             Collections.sort(activityListForMediaTribes, new ActivityByScoreComparator());
 
             this.activitiesByContentSource = activityMap;
             this.activityListForPeople = activityListForPeople;
             this.activityListForBusinessTribes = activityListForBusinessTribes;
-            this.activityListForTechTribes = activityListForTechTribes;
-            this.activityListForMediaTribes = activityListForMediaTribes;
             this.activityListForCommunityTribes = activityListForCommunityTribes;
         } catch (Exception e) {
             ActivityException ae = new ActivityException("Error refreshing recent activity", e);

@@ -64,7 +64,6 @@ public class RecentSummaryPageController extends AbstractController {
 
         model.addAttribute("activityListForPeople", activityComponent.getActivityListForPeople());
         model.addAttribute("activityListForBusinessTribes", activityComponent.getActivityListForBusinessTribes());
-        model.addAttribute("activityListForTechTribes", activityComponent.getActivityListForTechTribes());
         model.addAttribute("activityListForCommunityTribes", activityComponent.getActivityListForCommunityTribes());
 
         List<Badge> badges = Badges.getBadges();

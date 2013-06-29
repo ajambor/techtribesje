@@ -85,17 +85,6 @@
 
 <hr />
 
-<h3>Tech tribes</h3>
-<p>
-    These are the most active tech tribes, based upon the average of all activity by their members only.
-</p>
-<br />
-<c:set var="activityList" value="${activityListForTechTribes}" />
-<c:set var="topScore" value="${topScoreForTechTribes}" />
-<%@ include file="/WEB-INF/fragments/activity.jspf" %>
-
-<hr />
-
 <h3>Community tribes</h3>
 <p>
     And finally these are the most active community tribes, based upon their activity.
