@@ -1,7 +1,7 @@
 <%@ include file="/WEB-INF/fragments/tribe-profile.jspf" %>
 
 <c:if test="${tribe.type ne 'Tech' && not empty activity && activity.score > 0}">
-<div class="subSectionHeading">Activity and badges</div>
+<div class="subSectionHeading">Activity</div>
     <p>
     <c:choose>
         <c:when test="${tribe.type == 'Community'}">
@@ -17,7 +17,8 @@
 
 </c:if>
 
-<c:if test="${tribe.type ne 'Tech'}">
+<c:if test="${tribe.type ne 'Tech' && not empty badges}">
+<div class="subSectionHeading">Badges</div>
 <c:set var="contentSource" value="${tribe}" />
 <%@ include file="/WEB-INF/fragments/badges.jspf" %>
 </c:if>
