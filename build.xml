@@ -133,13 +133,16 @@
                 <pathelement location="${core.build.dir}/test-classes"/>
                 <pathelement location="${web.build.dir}/production-classes" />
                 <pathelement location="${web.build.dir}/test-classes"/>
+                <fileset dir="${env.TOMCAT_HOME}/lib/">
+                    <include name="*.jar"/>
+                </fileset>
             </classpath>
 
             <formatter type="plain"/>
 
             <batchtest fork="no" todir="${build.dir}">
                 <fileset dir="${web.dir}/test/unit">
-                    <include name="**/*Test*.java"/>
+                    <include name="**/*Tests.java"/>
                 </fileset>
             </batchtest>
         </junit>

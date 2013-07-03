@@ -24,7 +24,7 @@ public class RssController extends AbstractController {
     }
 
     @RequestMapping(value = "/rss.xml", method = RequestMethod.GET)
-	public View viewRecentNews(ModelMap model) {
+	public View generateRssFeed(ModelMap model) {
         List<? extends ContentItem> newsFeedEntries = newsFeedEntryComponent.getRecentNewsFeedEntries(1, PageSize.RECENT_NEWS_FEED_ENTRIES);
 
         model.addAttribute("newsFeedEntries", newsFeedEntries);
