@@ -40,7 +40,7 @@ public class AboutPageController extends AbstractController {
         addNewsFeedEntryStatistics(model);
         addTwitterStatistics(model);
         addCommonAttributes(model);
-        model.addAttribute("team", ((Tribe) contentSourceComponent.findByShortName("techtribesje")).getMembers());
+        model.addAttribute("team", ((Tribe)contentSourceComponent.findByShortName("techtribesje")).getMembers());
 
 		return "about";
 	}
@@ -53,13 +53,9 @@ public class AboutPageController extends AbstractController {
         List<ContentSource> techTribes = contentSourceComponent.getContentSources(ContentSourceType.Tech);
 
         model.addAttribute("people", people);
-        model.addAttribute("numberOfPeople", people.size());
         model.addAttribute("businessTribes", businessTribes);
-        model.addAttribute("numberOfBusinessTribes", businessTribes.size());
         model.addAttribute("communityTribes", communityTribes);
-        model.addAttribute("numberOfCommunityTribes", communityTribes.size());
         model.addAttribute("mediaTribes", mediaTribes);
-        model.addAttribute("numberOfMediaTribes", mediaTribes.size());
         model.addAttribute("techTribes", techTribes);
     }
 
@@ -76,11 +72,9 @@ public class AboutPageController extends AbstractController {
             countries.add(talk.getCountry());
         }
 
-        model.addAttribute("numberOfTalks", talks.size());
+        model.addAttribute("talks", talks);
         model.addAttribute("speakers", people);
-        model.addAttribute("numberOfSpeakers", people.size());
         model.addAttribute("countries", countries);
-        model.addAttribute("numberOfCountries", countries.size());
     }
 
     private void addNewsFeedEntryStatistics(ModelMap model) {

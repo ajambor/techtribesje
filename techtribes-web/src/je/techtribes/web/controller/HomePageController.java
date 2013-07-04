@@ -21,7 +21,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/")
-public class RecentSummaryPageController extends AbstractController {
+public class HomePageController extends AbstractController {
 
     private NewsFeedEntryComponent newsFeedEntryComponent;
     private TweetComponent twitterService;
@@ -31,7 +31,7 @@ public class RecentSummaryPageController extends AbstractController {
     private ActivityComponent activityComponent;
 
     @Autowired
-    public RecentSummaryPageController(NewsFeedEntryComponent newsFeedEntryComponent, TweetComponent twitterService, TalkComponent talksService, JobComponent jobService, EventComponent eventService, ActivityComponent activityComponent) {
+    public HomePageController(NewsFeedEntryComponent newsFeedEntryComponent, TweetComponent twitterService, TalkComponent talksService, JobComponent jobService, EventComponent eventService, ActivityComponent activityComponent) {
         this.newsFeedEntryComponent = newsFeedEntryComponent;
         this.twitterService = twitterService;
         this.talksService = talksService;
@@ -73,6 +73,7 @@ public class RecentSummaryPageController extends AbstractController {
         model.addAttribute("maxPage", 2);
 
         addCommonAttributes(model);
+        setPageTitle(model);
 
 		return "home";
 	}

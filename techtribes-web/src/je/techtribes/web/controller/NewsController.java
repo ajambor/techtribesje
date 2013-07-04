@@ -35,7 +35,6 @@ public class NewsController extends AbstractController {
         List<? extends ContentItem> newsEntries = newsFeedEntryComponent.getRecentNewsFeedEntries(mediaTribes, page, PageSize.RECENT_NEWS);
 
         model.addAttribute("newsEntries", newsEntries);
-        addCommonAttributes(model);
         model.addAttribute("currentPage", page);
         model.addAttribute("maxPage", maxPage);
         addCommonAttributes(model);

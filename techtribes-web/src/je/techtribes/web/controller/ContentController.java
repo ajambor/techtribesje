@@ -35,11 +35,10 @@ public class ContentController extends AbstractController {
         List<? extends ContentItem> newsFeedEntries = newsFeedEntryComponent.getRecentNewsFeedEntries(page, PageSize.RECENT_NEWS_FEED_ENTRIES);
 
         model.addAttribute("newsFeedEntries", newsFeedEntries);
-        model.addAttribute("contentSourceStatistics", new ContentSourceStatistics(newsFeedEntries).getStatistics());
         model.addAttribute("currentPage", page);
         model.addAttribute("maxPage", maxPage);
-        addCommonAttributes(model);
         setPageTitle(model, "Content", "" + page);
+        addCommonAttributes(model);
 
 		return "content";
 	}

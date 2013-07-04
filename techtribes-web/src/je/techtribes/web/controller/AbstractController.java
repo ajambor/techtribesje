@@ -30,18 +30,17 @@ public class AbstractController {
         }
     }
 
-    protected void setPageTitle(ModelMap model, String title) {
-        if (title != null && !title.isEmpty()) {
-            model.addAttribute("pageTitle", "- " + title);
+    protected void setPageTitle(ModelMap model, String... titles) {
+        String pageTitle = "techtribes.je";
+        if (titles != null) {
+            for (String title : titles) {
+                if (title != null && !title.isEmpty()) {
+                    pageTitle = pageTitle + " - " + title;
+                }
+            }
         }
-    }
 
-    protected void setPageTitle(ModelMap model, String title1, String title2) {
-        setPageTitle(model, title1 + " - " + title2);
-    }
-
-    protected void setPageTitle(ModelMap model, String title1, String title2, String title3) {
-        setPageTitle(model, title1 + " - " + title2 + " - " + title3);
+        model.addAttribute("pageTitle", pageTitle);
     }
 
     protected ContentSource lookupContentSourceBySignedInTwitterId() {

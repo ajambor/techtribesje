@@ -43,7 +43,7 @@
 
 <div class="row">
     <div class="span3">
-        <div class="statistic">${numberOfPeople}</div>
+        <div class="statistic">${fn:length(people)}</div>
         <div class="title"><a href="/people">people</a></div>
     </div>
     <div class="span9">
@@ -62,7 +62,7 @@
         </c:forEach>
     </div>
     <div class="span4">
-        <div class="statistic">${numberOfBusinessTribes}</div>
+        <div class="statistic">${fn:length(businessTribes)}</div>
         <div class="title"><a href="/business">businesses</a></div>
     </div>
 </div>
@@ -71,7 +71,7 @@
 
 <div class="row">
     <div class="span4">
-        <div class="statistic">${numberOfCommunityTribes}</div>
+        <div class="statistic">${fn:length(communityTribes)}</div>
         <div class="title"><a href="/community">communities</a></div>
     </div>
     <div class="span3">
@@ -80,7 +80,7 @@
         </c:forEach>
     </div>
     <div class="span3">
-        <div class="statistic">${numberOfMediaTribes}</div>
+        <div class="statistic">${fn:length(mediaTribes)}</div>
         <div class="title"><a href="/media">media organisation</a></div>
     </div>
     <div class="span2">
@@ -107,12 +107,12 @@
 
 <div class="row">
     <div class="span3">
-        <div class="statistic">${numberOfTalks}</div>
+        <div class="statistic">${fn:length(talks)}</div>
         <div class="title"><a href="/talks">talks</a></div>
     </div>
     <div class="span1"><div class="title" style="padding-top: 60px; color: gray;">by</div></div>
     <div class="span3">
-        <div class="statistic">${numberOfSpeakers}</div>
+        <div class="statistic">${fn:length(speakers)}</div>
         <div class="title">local people</div>
         <br />
         <c:forEach var="person" items="${speakers}">
@@ -121,7 +121,7 @@
     </div>
     <div class="span1"><div class="title" style="padding-top: 60px; color: gray;">in</div></div>
     <div class="span4">
-        <div class="statistic">${numberOfCountries}</div>
+        <div class="statistic">${fn:length(countries)}</div>
         <div class="title">countries</div>
         <br />
         <c:forEach var="country" items="${countries}">
