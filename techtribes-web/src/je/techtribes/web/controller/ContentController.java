@@ -1,8 +1,7 @@
 package je.techtribes.web.controller;
 
-import je.techtribes.domain.ContentItem;
 import je.techtribes.component.newsfeedentry.NewsFeedEntryComponent;
-import je.techtribes.domain.ContentSourceStatistics;
+import je.techtribes.domain.ContentItem;
 import je.techtribes.util.PageSize;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
