@@ -1,7 +1,5 @@
 package je.techtribes.web.controller;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,8 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class ErrorPageController extends AbstractController {
-
-    private static Log log = LogFactory.getLog(ErrorPageController.class);
 
     @RequestMapping(value= "/400", method = RequestMethod.GET)
     public String show400Page(ModelMap model) {
@@ -31,7 +27,7 @@ public class ErrorPageController extends AbstractController {
 
     @RequestMapping(value= "/404", method = RequestMethod.GET)
     public String show404Page(ModelMap model, HttpServletRequest request) {
-        log.warn("[404] " + request.getAttribute("javax.servlet.forward.request_uri"));
+        loggingComponent.warn(this, "[404] " + request.getAttribute("javax.servlet.forward.request_uri"));
         addCommonAttributes(model);
         setPageTitle(model, "404");
 

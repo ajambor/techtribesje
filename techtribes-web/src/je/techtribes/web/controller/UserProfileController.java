@@ -4,8 +4,6 @@ import je.techtribes.domain.ContentSource;
 import je.techtribes.domain.Person;
 import je.techtribes.domain.Tribe;
 import je.techtribes.util.StringUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,8 +15,6 @@ import java.util.List;
 
 @Controller
 public class UserProfileController extends AbstractController {
-
-    private static Log log = LogFactory.getLog(UserProfileController.class);
 
     @RequestMapping(value="/user/profile", method = RequestMethod.GET)
     public String viewProfile(ModelMap model) {

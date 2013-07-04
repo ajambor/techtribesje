@@ -1,8 +1,6 @@
 package je.techtribes.domain;
 
 import je.techtribes.component.log.LoggingComponentFactory;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -13,8 +11,6 @@ import java.util.Set;
  * Superclass for a person or tribe.
  */
 public abstract class ContentSource implements Comparable<ContentSource> {
-
-    private static final Log log = LogFactory.getLog(ContentSource.class);
 
     private int id;
     private ContentSourceType type = ContentSourceType.Person;
@@ -158,7 +154,7 @@ public abstract class ContentSource implements Comparable<ContentSource> {
                 NewsFeed newsFeed = new NewsFeed(url, this);
                 newsFeeds.add(newsFeed);
             } catch (Exception e) {
-                log.error("Ignoring news feed at " + url + " " + getName());
+                // do nothing
             }
         }
     }

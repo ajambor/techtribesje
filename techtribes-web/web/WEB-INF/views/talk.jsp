@@ -1,10 +1,6 @@
 <div class="talksSection">
     <div class="subSectionHeading">${talk.title}</div>
 
-    <%--<c:if test="${not empty talk.eventLogo}">--%>
-        <%--<div style="text-align: center;"><img src="/static/img/events/${talk.eventLogo}" alt="${talk.eventName}" style="margin-left: 8px; margin-bottom: 8px;" class="img-rounded"/></div>--%>
-    <%--</c:if>--%>
-
     <p style="clear: both;">
         <c:out value="${talk.description}" escapeXml="false" />
     </p>

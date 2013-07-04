@@ -12,6 +12,7 @@
     <bean id="newsFeedEntryDao" class="je.techtribes.component.newsfeedentry.MongoDbNewsFeedEntryDao">
         <constructor-arg name="mongo" ref="mongo" />
         <constructor-arg name="database" value="${mongodb.database}" />
+        <constructor-arg name="loggingComponent" ref="loggingComponent" />
     </bean>
 
 </beans>

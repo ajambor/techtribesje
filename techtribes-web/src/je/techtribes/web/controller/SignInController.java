@@ -1,7 +1,5 @@
 package je.techtribes.web.controller;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.springframework.social.connect.Connection;
 import org.springframework.social.connect.web.ProviderSignInUtils;
 import org.springframework.stereotype.Controller;
@@ -15,13 +13,12 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class SignInController extends AbstractController {
 
-    private static Log log = LogFactory.getLog(SignInController.class);
-
 	@RequestMapping(value = "/signin", method = RequestMethod.GET)
 	public String showHomePage(ModelMap model, HttpServletRequest request) {
+        // todo: remove this
         Connection<?> connection = ProviderSignInUtils.getConnection(new ServletWebRequest(request));
         if (connection != null) {
-            log.error(connection);
+            loggingComponent.error(this, "Connection is null");
         }
 
         addCommonAttributes(model);

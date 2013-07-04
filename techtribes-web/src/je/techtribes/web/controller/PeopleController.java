@@ -3,22 +3,16 @@ package je.techtribes.web.controller;
 import je.techtribes.component.activity.ActivityComponent;
 import je.techtribes.component.badge.BadgeComponent;
 import je.techtribes.component.github.GitHubComponent;
-import je.techtribes.domain.*;
-import je.techtribes.domain.ContentSource;
-import je.techtribes.domain.badge.AwardedBadge;
-import je.techtribes.util.comparator.AwardedBadgeComparator;
-import je.techtribes.util.comparator.ContentSourceByTwitterFollowersCountDescendingComparator;
-import je.techtribes.domain.ContentSourceType;
 import je.techtribes.component.newsfeedentry.NewsFeedEntryComponent;
 import je.techtribes.component.newsfeedentry.NewsFeedEntryException;
-import je.techtribes.domain.Tweet;
+import je.techtribes.component.talk.TalkComponent;
 import je.techtribes.component.tweet.TweetComponent;
 import je.techtribes.component.tweet.TweetException;
-import je.techtribes.component.talk.TalkComponent;
-import je.techtribes.domain.Talk;
+import je.techtribes.domain.*;
+import je.techtribes.domain.badge.AwardedBadge;
 import je.techtribes.util.PageSize;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import je.techtribes.util.comparator.AwardedBadgeComparator;
+import je.techtribes.util.comparator.ContentSourceByTwitterFollowersCountDescendingComparator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -31,8 +25,6 @@ import java.util.*;
 
 @Controller
 public class PeopleController extends AbstractController {
-
-    private Log log = LogFactory.getLog(PeopleController.class);
 
     private BadgeComponent badgeComponent;
     private NewsFeedEntryComponent newsFeedEntryComponent;
@@ -154,7 +146,7 @@ public class PeopleController extends AbstractController {
             try {
                 tweets = tweetComponent.getRecentTweets(contentSources, page, PageSize.RECENT_TWEETS);
             } catch (TweetException tse) {
-                log.warn("Couldn't retrieve tweets for " + shortName, tse);
+                loggingComponent.warn(this, "Couldn't retrieve tweets for " + shortName, tse);
             }
         }
 
@@ -189,7 +181,7 @@ public class PeopleController extends AbstractController {
             try {
                 newsFeedEntries = newsFeedEntryComponent.getRecentNewsFeedEntries(contentSources, page, PageSize.RECENT_NEWS_FEED_ENTRIES);
             } catch (NewsFeedEntryException nfse) {
-                log.warn("Couldn't retrieve content for " + shortName, nfse);
+                loggingComponent.warn(this, "Couldn't retrieve content for " + shortName, nfse);
             }
         }
 

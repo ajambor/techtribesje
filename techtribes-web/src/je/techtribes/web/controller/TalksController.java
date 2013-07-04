@@ -1,10 +1,8 @@
 package je.techtribes.web.controller;
 
-import je.techtribes.domain.ContentSource;
-import je.techtribes.domain.Talk;
-import je.techtribes.util.comparator.ContentSourceByNameComparator;
-import je.techtribes.domain.ContentSourceStatistics;
 import je.techtribes.component.talk.TalkComponent;
+import je.techtribes.domain.ContentSourceStatistics;
+import je.techtribes.domain.Talk;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -23,7 +21,7 @@ public class TalksController extends AbstractController {
     private TalkComponent talkComponent;
 
     @Autowired
-    public void setTalkComponent(TalkComponent talkComponent) {
+    public TalksController(TalkComponent talkComponent) {
         this.talkComponent = talkComponent;
     }
 
@@ -55,25 +53,20 @@ public class TalksController extends AbstractController {
 	}
 
     private void prepareModel(List<Talk> talks, ModelMap model) {
-        Set<ContentSource> people = new TreeSet<ContentSource>(new ContentSourceByNameComparator());
-        Set<String> countries = new TreeSet<String>();
-
-        for (Talk talk : talks) {
-            if (talk.getContentSource() != null) {
-                people.add(talk.getContentSource());
-            }
-
-            countries.add(talk.getCountry());
-        }
-
         model.addAttribute("talks", talks);
-        model.addAttribute("people", people);
-        model.addAttribute("numberOfPeople", people.size());
-        model.addAttribute("countries", countries);
-        model.addAttribute("numberOfCountries", countries.size());
+        model.addAttribute("countries", getCountries(talks));
         model.addAttribute("contentSourceStatistics", new ContentSourceStatistics(talks).getStatistics());
         setPageTitle(model, "Talks");
         addCommonAttributes(model);
+    }
+
+    private Set<String> getCountries(List<Talk> talks) {
+        Set<String> countries = new TreeSet<>();
+
+        for (Talk talk : talks) {
+            countries.add(talk.getCountry());
+        }
+        return countries;
     }
 
 }

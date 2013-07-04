@@ -1,6 +1,7 @@
 package je.techtribes.web.controller;
 
 import je.techtribes.component.contentsource.ContentSourceComponent;
+import je.techtribes.component.log.LoggingComponent;
 import je.techtribes.domain.ContentSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -8,11 +9,17 @@ import org.springframework.ui.ModelMap;
 
 public class AbstractController {
 
+    protected LoggingComponent loggingComponent;
     protected ContentSourceComponent contentSourceComponent;
 
     @Autowired
     public void setContentSourceComponent(ContentSourceComponent contentSourceComponent) {
         this.contentSourceComponent = contentSourceComponent;
+    }
+
+    @Autowired
+    public void setLoggingComponent(LoggingComponent loggingComponent) {
+        this.loggingComponent = loggingComponent;
     }
 
     protected void addCommonAttributes(ModelMap model) {

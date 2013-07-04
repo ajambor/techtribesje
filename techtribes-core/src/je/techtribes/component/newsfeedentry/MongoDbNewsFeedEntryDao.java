@@ -1,10 +1,9 @@
 package je.techtribes.component.newsfeedentry;
 
 import com.mongodb.*;
+import je.techtribes.component.log.LoggingComponent;
 import je.techtribes.domain.ContentSource;
 import je.techtribes.domain.NewsFeedEntry;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 import java.util.*;
 
@@ -13,7 +12,7 @@ class MongoDbNewsFeedEntryDao implements NewsFeedEntryDao {
     private Mongo mongo;
     private String database;
 
-    private static final Log log = LogFactory.getLog(MongoDbNewsFeedEntryDao.class);
+    private LoggingComponent loggingComponent;
 
     private static final String NEWS_FEED_ENTRY_COLLECTION = "newsFeedEntries";
 
@@ -23,9 +22,10 @@ class MongoDbNewsFeedEntryDao implements NewsFeedEntryDao {
     private static final String CONTENT_SOURCE_ID_KEY = "contentSourceId";
     private static final String TIMESTAMP_KEY = "timestamp";
 
-    MongoDbNewsFeedEntryDao(Mongo mongo, String database) {
+    MongoDbNewsFeedEntryDao(Mongo mongo, String database, LoggingComponent loggingComponent) {
         this.mongo = mongo;
         this.database = database;
+        this.loggingComponent = loggingComponent;
     }
 
     public void storeNewsFeedEntries(Collection<NewsFeedEntry> newsFeedEntries) {
@@ -63,9 +63,9 @@ class MongoDbNewsFeedEntryDao implements NewsFeedEntryDao {
 
         List<DBObject> possibleDuplicates = getDBCollection().find(duplicateQuery).toArray();
         if (possibleDuplicates.size() > 0 && !possibleDuplicates.get(0).get(PERMALINK_KEY).toString().equals(newsFeedEntry.getPermalink())) {
-            log.warn("Possible duplicated detected for \"" + newsFeedEntry.getTitle() + "\" by " + newsFeedEntry.getContentSource().getName());
-            log.warn(" - old permalink: " + possibleDuplicates.get(0).get(PERMALINK_KEY).toString());
-            log.warn(" - new permalink: " + newsFeedEntry.getPermalink());
+            loggingComponent.warn(this, "Possible duplicated detected for \"" + newsFeedEntry.getTitle() + "\" by " + newsFeedEntry.getContentSource().getName());
+            loggingComponent.warn(this, " - old permalink: " + possibleDuplicates.get(0).get(PERMALINK_KEY).toString());
+            loggingComponent.warn(this, " - new permalink: " + newsFeedEntry.getPermalink());
 
             return true;
         }
@@ -83,9 +83,9 @@ class MongoDbNewsFeedEntryDao implements NewsFeedEntryDao {
 
         List<DBObject> possibleDuplicates = getDBCollection().find(duplicateQuery).toArray();
         if (possibleDuplicates.size() > 0 && !possibleDuplicates.get(0).get(TIMESTAMP_KEY).equals(newsFeedEntry.getTimestamp())) {
-            log.warn("Possible duplicated detected for \"" + newsFeedEntry.getTitle() + "\" by " + newsFeedEntry.getContentSource().getName());
-            log.warn(" - old date: " + possibleDuplicates.get(0).get(TIMESTAMP_KEY).toString());
-            log.warn(" - new date: " + newsFeedEntry.getTimestamp());
+            loggingComponent.warn(this, "Possible duplicated detected for \"" + newsFeedEntry.getTitle() + "\" by " + newsFeedEntry.getContentSource().getName());
+            loggingComponent.warn(this, " - old date: " + possibleDuplicates.get(0).get(TIMESTAMP_KEY).toString());
+            loggingComponent.warn(this, " - new date: " + newsFeedEntry.getTimestamp());
 
             return true;
         }

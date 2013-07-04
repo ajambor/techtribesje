@@ -1,8 +1,6 @@
 package je.techtribes.web.controller;
 
 import je.techtribes.domain.*;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,8 +16,6 @@ import java.util.List;
 @Controller
 public class AdminController extends AbstractController {
 
-    private static Log log = LogFactory.getLog(AdminController.class);
-
     @RequestMapping(value="/admin/status", method = RequestMethod.GET)
 	public String viewStatus(ModelMap model) {
         model.addAttribute("contentSources", contentSourceComponent.getPeopleAndTribes());
@@ -32,7 +28,7 @@ public class AdminController extends AbstractController {
     public String viewTribe(@PathVariable("name")String shortName, ModelMap model) {
         ContentSource contentSource = contentSourceComponent.findByShortName(shortName);
         if (contentSource.isPerson()) {
-            log.error(shortName + " is not a tribe");
+            loggingComponent.error(this, shortName + " is not a tribe");
             return "404";
         }
         Tribe tribe = (Tribe)contentSource;
@@ -60,7 +56,7 @@ public class AdminController extends AbstractController {
     public String updateTribe(@PathVariable("name")String shortName, ModelMap model, HttpServletRequest request) {
         ContentSource contentSource = contentSourceComponent.findByShortName(shortName);
         if (contentSource.isPerson()) {
-            log.error(shortName + " is not a tribe");
+            loggingComponent.error(this, shortName + " is not a tribe");
             return "404";
         }
         Tribe tribe = (Tribe)contentSource;
@@ -118,22 +114,22 @@ public class AdminController extends AbstractController {
                 break;
         }
 
+        String url = request.getParameter("url");
         try {
-            String url = request.getParameter("url");
             if (url != null && !url.isEmpty()) {
                 contentSource.setUrl(new URL(url));
             }
         } catch (MalformedURLException e) {
-            log.warn(e);
+            loggingComponent.warn(this, "Could not parse URL of " + url, e);
         }
 
+        String profileImageUrl = request.getParameter("profileImageUrl");
         try {
-            String url = request.getParameter("profileImageUrl");
-            if (url != null && !url.isEmpty()) {
-                contentSource.setProfileImageUrl(new URL(url));
+            if (profileImageUrl != null && !profileImageUrl.isEmpty()) {
+                contentSource.setProfileImageUrl(new URL(profileImageUrl));
             }
         } catch (MalformedURLException e) {
-            log.warn(e);
+            loggingComponent.warn(this, "Could not parse URL of " + profileImageUrl, e);
         }
 
         String feedUrl1 = request.getParameter("feedUrl1");

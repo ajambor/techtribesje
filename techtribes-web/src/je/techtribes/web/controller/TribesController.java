@@ -16,8 +16,6 @@ import je.techtribes.domain.*;
 import je.techtribes.domain.badge.AwardedBadge;
 import je.techtribes.util.PageSize;
 import je.techtribes.util.comparator.AwardedBadgeComparator;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -29,8 +27,6 @@ import java.util.*;
 
 @Controller
 public class TribesController extends AbstractController {
-
-    private static Log log = LogFactory.getLog(TribesController.class);
 
     private BadgeComponent badgeComponent;
     private NewsFeedEntryComponent newsFeedEntryComponent;
@@ -100,7 +96,7 @@ public class TribesController extends AbstractController {
 	public String viewTribe(@PathVariable("name")String shortName, ModelMap model) {
         ContentSource contentSource = contentSourceComponent.findByShortName(shortName);
         if (contentSource.isPerson()) {
-            log.error(shortName + " is not a tribe");
+            loggingComponent.error(this, shortName + " is not a tribe");
             return "404";
         }
         Tribe tribe = (Tribe)contentSource;
@@ -135,7 +131,7 @@ public class TribesController extends AbstractController {
 	public String viewTribeTweets(@PathVariable("name")String shortName, @PathVariable("page")int page, ModelMap model) {
         ContentSource contentSource = contentSourceComponent.findByShortName(shortName);
         if (contentSource.isPerson()) {
-            log.error(shortName + " is not a tribe");
+            loggingComponent.error(this, shortName + " is not a tribe");
             return "404";
         }
 
@@ -165,7 +161,7 @@ public class TribesController extends AbstractController {
                 try {
                     tweets = tweetComponent.getRecentTweets(contentSources, page, PageSize.RECENT_TWEETS);
                 } catch (TweetException tse) {
-                    log.warn("Couldn't retrieve tweets for " + shortName, tse);
+                    loggingComponent.warn(this, "Couldn't retrieve tweets for " + shortName, tse);
                 }
             }
 
@@ -188,7 +184,7 @@ public class TribesController extends AbstractController {
 	public String viewTribeContent(@PathVariable("name")String shortName, @PathVariable("page")int page, ModelMap model) {
         ContentSource contentSource = contentSourceComponent.findByShortName(shortName);
         if (contentSource.isPerson()) {
-            log.error(shortName + " is not a tribe");
+            loggingComponent.error(this, shortName + " is not a tribe");
             return "404";
         }
         Tribe tribe = (Tribe)contentSource;
@@ -217,7 +213,7 @@ public class TribesController extends AbstractController {
                 try {
                     newsFeedEntries = newsFeedEntryComponent.getRecentNewsFeedEntries(contentSources, page, PageSize.RECENT_NEWS_FEED_ENTRIES);
                 } catch (NewsFeedEntryException nfse) {
-                    log.warn("Couldn't retrieve content for " + shortName, nfse);
+                    loggingComponent.warn(this, "Couldn't retrieve content for " + shortName, nfse);
                 }
             }
 
@@ -235,7 +231,7 @@ public class TribesController extends AbstractController {
 	public String viewTribeTalks(@PathVariable("name")String shortName, ModelMap model) {
         ContentSource contentSource = contentSourceComponent.findByShortName(shortName);
         if (contentSource.isPerson()) {
-            log.error(shortName + " is not a tribe");
+            loggingComponent.error(this, shortName + " is not a tribe");
             return "404";
         }
         Tribe tribe = (Tribe)contentSource;

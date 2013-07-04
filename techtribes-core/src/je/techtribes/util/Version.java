@@ -1,7 +1,6 @@
 package je.techtribes.util;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import je.techtribes.component.log.LoggingComponentFactory;
 
 import java.io.InputStream;
 import java.text.DateFormat;
@@ -17,8 +16,6 @@ public class Version {
     private static String version;
     private static Date buildTimestamp;
 
-    private static final Log log = LogFactory.getLog(Version.class);
-
     static {
         try {
             Properties buildProperties = new Properties();
@@ -31,7 +28,7 @@ public class Version {
                 in.close();
             }
         } catch (Exception e) {
-            log.error(e);
+            LoggingComponentFactory.create().error(new Version(), "Could not load build information", e);
         }
     }
 
